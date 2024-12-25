@@ -1,0 +1,3 @@
+class AppFontWeights{
+  AppFontWeights._();
+}
