@@ -362,4 +362,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loading => 'Loading...';
+
+  @override
+  String get emailVerification => 'Email Verification';
+
+  @override
+  String get enterOtpCode => 'Please enter your code that send to your email address ';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get didnotReceiveCode => 'Did not receive the code?';
 }

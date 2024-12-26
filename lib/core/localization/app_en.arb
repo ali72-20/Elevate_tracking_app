@@ -118,5 +118,9 @@
   "forgetPasswordKey": "Forget Password",
   "confirm": "Confirm",
   "enterEmailAssociatedWithYourAccount": "Please enter email associated with your account",
-    "loading": "Loading..."
+  "loading": "Loading...",
+  "emailVerification": "Email Verification",
+  "enterOtpCode": "Please enter your code that send to your email address ",
+  "resend": "Resend",
+  "didnotReceiveCode": "Did not receive the code?"
 }

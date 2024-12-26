@@ -8,11 +8,16 @@ import 'package:tracking_app/core/utilities/style/app_font_weights.dart';
 class AppTextStyles{
   AppTextStyles._();
    static TextStyle font16Medium = TextStyle(
-     fontSize: 15.sp,
+     fontSize: 16.sp,
      color: AppColors.kWhiteBase,
      fontWeight: AppFontWeights.medium
   );
 
+  static TextStyle font16Regular = TextStyle(
+    fontSize: 16.sp,
+    color: AppColors.kBlack,
+    fontWeight: AppFontWeights.normal
+  ) ;
    static TextStyle font20Medium = TextStyle(
       fontSize: 20.sp,
       color: AppColors.kBlack,

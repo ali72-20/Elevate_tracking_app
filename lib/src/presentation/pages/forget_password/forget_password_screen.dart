@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
 import 'package:tracking_app/core/utilities/style/app_colors.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
+import 'package:tracking_app/src/data/api/core/errors/error_handler.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_states.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_view_model.dart';
@@ -59,6 +60,19 @@ class ForgetPasswordScreen extends StatelessWidget {
                     ),
                   ),
                   backgroundColor: AppColors.kSuccess,
+                ),
+              );
+            }
+            if(state is FailureState){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    ErrorHandler.fromException(state.exception!, AppLocalizations.of(context)!).errorMassage,
+                    style: AppTextStyles.font14Regular.copyWith(
+                      color: AppColors.kWhiteBase,
+                    ),
+                  ),
+                  backgroundColor: AppColors.kError,
                 ),
               );
             }

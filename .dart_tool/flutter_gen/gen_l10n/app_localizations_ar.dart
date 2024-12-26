@@ -362,4 +362,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loading => 'جار التحميل';
+
+  @override
+  String get emailVerification => 'تحقق من البريد الإلكتروني';
+
+  @override
+  String get enterOtpCode => 'من فضلك ادخل رمز التحقق المرسل علي البريد الالكتروني الخاص بكم';
+
+  @override
+  String get resend => 'اعادة ارسال';
+
+  @override
+  String get didnotReceiveCode => 'لم تستلم الرمز؟';
 }

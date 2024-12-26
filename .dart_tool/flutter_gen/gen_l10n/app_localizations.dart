@@ -808,6 +808,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loading;
+
+  /// No description provided for @emailVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get emailVerification;
+
+  /// No description provided for @enterOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your code that send to your email address '**
+  String get enterOtpCode;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @didnotReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Did not receive the code?'**
+  String get didnotReceiveCode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

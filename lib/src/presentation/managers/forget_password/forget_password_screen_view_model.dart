@@ -17,14 +17,17 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   TextEditingController emailController = TextEditingController();
   bool isConfirmButtonAction = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> otpFormKey = GlobalKey<FormState>();
   int currentStateIndex = 0;
 
-  _getOtp() async {
+  _getOtp(bool isResend) async {
     emit(LoadingState());
     var response = await _forgetPasswordUseCases.getOtp(emailController.text);
     switch (response) {
       case Success<GetOtpResponseEntity>():
-        _goToNextState();
+        if(!isResend) {
+          _goToNextState();
+        }
         emit(SuccessState(message: response.data!.info));
         break;
       case Failures<GetOtpResponseEntity>():
@@ -57,20 +60,23 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
 
   _confirmEmail() async {
     if(formKey.currentState!.validate()){
-      _getOtp();
+      _getOtp(false);
     }
   }
 
   void doAction(ForgetPasswordScreenActions action) {
     switch (action) {
       case GetOtpAction():
-        _getOtp();
+        _getOtp(false);
         break;
       case GoToPrevStateAction():
         _goToPrevState();
         break;
       case ConfirmEmailAction():
         _confirmEmail();
+        break;
+      case ResendOtpAction():
+        _getOtp(true);
         break;
     }
   }
