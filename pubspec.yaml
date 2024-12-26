@@ -57,6 +57,7 @@ dependencies:
   flutter_localization: ^0.3.0
   intl: any
   flutter_lints: ^3.0.0
+  bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:

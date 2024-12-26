@@ -23,6 +23,10 @@ import '../../src/data/repositories/forget_password_repository_impl.dart'
     as _i847;
 import '../../src/domain/repositories/forget_password/forget_password_repository.dart'
     as _i1032;
+import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
+    as _i235;
+import '../../src/presentation/managers/forget_password/forget_password_screen_view_model.dart'
+    as _i340;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -44,6 +48,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1032.ForgetPasswordRepository>(() =>
         _i847.ForgetPasswordRepositoryImpl(
             gh<_i673.ForgetPasswordOnlineDataSource>()));
+    gh.factory<_i235.ForgetPasswordUseCases>(() =>
+        _i235.ForgetPasswordUseCases(gh<_i1032.ForgetPasswordRepository>()));
+    gh.factory<_i340.ForgetPasswordScreenViewModel>(() =>
+        _i340.ForgetPasswordScreenViewModel(
+            gh<_i235.ForgetPasswordUseCases>()));
     return this;
   }
 }
