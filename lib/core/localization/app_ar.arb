@@ -121,5 +121,9 @@
   "emailVerification": "تحقق من البريد الإلكتروني",
   "enterOtpCode": "من فضلك ادخل رمز التحقق المرسل علي البريد الالكتروني الخاص بكم",
   "resend": "اعادة ارسال",
-  "didnotReceiveCode": "لم تستلم الرمز؟"
+  "didnotReceiveCode": "لم تستلم الرمز؟",
+  "enterEmail": "أدخل بريدك الإلكتروني",
+  "enterPassword": "أدخل كلمة المرور",
+  "continues": "دخول"
+
 }

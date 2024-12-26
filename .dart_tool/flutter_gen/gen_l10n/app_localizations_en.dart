@@ -374,4 +374,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get didnotReceiveCode => 'Did not receive the code?';
+
+  @override
+  String get enterEmail => 'Enter Your Email';
+
+  @override
+  String get enterPassword => 'Enter Your  Password';
+
+  @override
+  String get continues => 'Continue';
 }

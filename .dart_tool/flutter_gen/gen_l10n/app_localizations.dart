@@ -832,6 +832,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Did not receive the code?'**
   String get didnotReceiveCode;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Email'**
+  String get enterEmail;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your  Password'**
+  String get enterPassword;
+
+  /// No description provided for @continues.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continues;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

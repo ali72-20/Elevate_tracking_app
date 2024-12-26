@@ -122,5 +122,8 @@
   "emailVerification": "Email Verification",
   "enterOtpCode": "Please enter your code that send to your email address ",
   "resend": "Resend",
-  "didnotReceiveCode": "Did not receive the code?"
+  "didnotReceiveCode": "Did not receive the code?",
+  "enterEmail" : "Enter Your Email",
+  "enterPassword": "Enter Your  Password",
+   "continues": "Continue"
 }

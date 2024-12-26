@@ -13,6 +13,7 @@ abstract class DioProvider {
         sendTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
       ),
+
     );
     dio.interceptors.add(providePretty());
     return dio;

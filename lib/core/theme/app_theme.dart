@@ -13,6 +13,14 @@ class AppTheme {
       bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: Colors.transparent
       ),
+     appBarTheme: AppBarTheme(
+       backgroundColor: AppColors.kWhiteBase,
+       titleTextStyle: TextStyle(
+           fontSize: 20.sp,
+           color: AppColors.kBlackBase,
+           fontWeight: FontWeight.w500
+       ),
+     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: AppBorderRadius.xs,

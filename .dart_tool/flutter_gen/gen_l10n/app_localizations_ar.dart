@@ -374,4 +374,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get didnotReceiveCode => 'لم تستلم الرمز؟';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get continues => 'دخول';
 }
