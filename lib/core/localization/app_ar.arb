@@ -113,5 +113,8 @@
   "placeOrder": "اطلب",
   "itsGift": "هدية",
   "failedToLoadAddress": "فشل في تحميل العنوان",
-  "notifications": "الإشعارات"
+  "notifications": "الإشعارات",
+  "forgetPasswordKey": "نسيت كلمة السر",
+  "confirm": "تأكيد",
+  "enterEmailAssociatedWithYourAccount": "أدخل البريد الإلكتروني المرتبط بحسابك"
 }

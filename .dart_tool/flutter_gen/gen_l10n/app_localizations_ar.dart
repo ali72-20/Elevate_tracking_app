@@ -350,4 +350,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notifications => 'الإشعارات';
+
+  @override
+  String get forgetPasswordKey => 'نسيت كلمة السر';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get enterEmailAssociatedWithYourAccount => 'أدخل البريد الإلكتروني المرتبط بحسابك';
 }

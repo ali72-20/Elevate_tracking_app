@@ -28,7 +28,7 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: AppBorderRadius.xs,
         borderSide: const BorderSide(
-          color: AppColors.kBlue,
+          color: AppColors.kGray,
         )
       )
     ),
@@ -37,8 +37,10 @@ class AppTheme {
         backgroundColor: AppColors.kBaseColor,
         disabledBackgroundColor: AppColors.kWhite70,
         textStyle: AppTextStyles.font16Medium
-      )
-    )
+      ),
+
+    ),
+
 
 
 

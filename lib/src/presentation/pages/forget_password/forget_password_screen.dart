@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_states.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_view_model.dart';
@@ -26,6 +27,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back_ios_new),
           ),
+          title: Text(AppLocalizations.of(context)!.password, style: AppTextStyles.font20Medium,),
         ),
         body: BlocConsumer<ForgetPasswordScreenViewModel,
             ForgetPasswordScreenStates>(

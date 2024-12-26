@@ -784,6 +784,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notifications'**
   String get notifications;
+
+  /// No description provided for @forgetPasswordKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forgetPasswordKey;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @enterEmailAssociatedWithYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter email associated with your account'**
+  String get enterEmailAssociatedWithYourAccount;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

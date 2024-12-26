@@ -27,7 +27,7 @@ class TrackingApp extends StatelessWidget {
         supportedLocales: L10n.all,
         debugShowCheckedModeBanner: false,
         navigatorKey: navKey,
-        initialRoute: PageRoutesName.splash,
+        initialRoute: PageRoutesName.forgetPassword,
         onGenerateRoute: AppRoutes.onGenerateRoute,
         themeMode: ThemeMode.light,
         theme: AppTheme.defaultTheme,

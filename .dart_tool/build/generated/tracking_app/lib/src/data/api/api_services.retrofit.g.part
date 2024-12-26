@@ -20,11 +20,13 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetOtpResponseModel> getOtp(String email) async {
+  Future<GetOtpResponseModel> getOtp(
+      GetOtpRequestModel getOtpRequestModel) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = email;
+    final _data = <String, dynamic>{};
+    _data.addAll(getOtpRequestModel.toJson());
     final _options = _setStreamType<GetOtpResponseModel>(Options(
       method: 'POST',
       headers: _headers,

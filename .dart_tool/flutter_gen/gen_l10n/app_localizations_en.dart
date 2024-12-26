@@ -350,4 +350,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifications => 'Notifications';
+
+  @override
+  String get forgetPasswordKey => 'Forget Password';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get enterEmailAssociatedWithYourAccount => 'Please enter email associated with your account';
 }

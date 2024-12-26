@@ -12,4 +12,27 @@ class AppTextStyles{
      color: AppColors.kWhiteBase,
      fontWeight: AppFontWeights.medium
   );
+
+   static TextStyle font20Medium = TextStyle(
+      fontSize: 20.sp,
+      color: AppColors.kBlack,
+      fontWeight: AppFontWeights.medium
+   );
+
+  static TextStyle font18Medium = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.kBlack,
+    fontWeight: AppFontWeights.medium
+  );
+
+  static TextStyle font14Regular = TextStyle(
+    fontSize: 14.sp,
+    color: AppColors.kBlack,
+    fontWeight: AppFontWeights.normal
+  );
+  static TextStyle font12Regular = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.kBlack,
+    fontWeight: AppFontWeights.normal
+  );
 }
