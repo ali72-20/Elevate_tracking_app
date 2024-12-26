@@ -17,3 +17,4 @@ class FailureState extends ForgetPasswordScreenStates{
   final Exception? exception;
   FailureState({this.exception});
 }
+class GoToPrevState extends ForgetPasswordScreenStates{}

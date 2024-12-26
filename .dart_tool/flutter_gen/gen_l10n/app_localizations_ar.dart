@@ -359,4 +359,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterEmailAssociatedWithYourAccount => 'أدخل البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get loading => 'جار التحميل';
 }

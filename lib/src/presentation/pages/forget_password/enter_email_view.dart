@@ -7,8 +7,8 @@ import 'package:tracking_app/src/presentation/managers/forget_password/forget_pa
 
 import '../../../../core/common/common_imports.dart';
 
-class EnterEmailWidget extends StatelessWidget {
-  const EnterEmailWidget({super.key});
+class EnterEmailView extends StatelessWidget {
+  const EnterEmailView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +25,22 @@ class EnterEmailWidget extends StatelessWidget {
             verticalSpace(16),
             Text(AppLocalizations.of(context)!.enterEmailAssociatedWithYourAccount,style: AppTextStyles.font14Regular.copyWith(color: AppColors.kGray),),
             verticalSpace(32),
-            TextFormField(
-              controller: viewModel.emailController,
-              decoration: InputDecoration(
-                label: Text(AppLocalizations.of(context)!.email, style: AppTextStyles.font12Regular,),
-                hintText: AppLocalizations.of(context)!.enterYourEmail,
-                hintStyle: AppTextStyles.font14Regular.copyWith(color: AppColors.kWhite70),
+            Form(
+              key: viewModel.formKey,
+              child: TextFormField(
+                controller: viewModel.emailController,
+                decoration: InputDecoration(
+                  label: Text(AppLocalizations.of(context)!.email, style: AppTextStyles.font12Regular,),
+                  hintText: AppLocalizations.of(context)!.enterYourEmail,
+                  hintStyle: AppTextStyles.font14Regular.copyWith(color: AppColors.kWhite70),
+                ),
+                validator: (value){
+                  return viewModel.emailValidator();
+                },
+                onSaved: (value){
+                  viewModel.emailController.text = value!;
+                },
               ),
-              validator: (value){
-                if(value!.isEmpty){
-                  return AppLocalizations.of(context)!.emailNotValid;
-                }
-                return null;
-              },
-              onSaved: (value){
-                viewModel.emailController.text = value!;
-              },
             ),
             verticalSpace(48),
             SizedBox(

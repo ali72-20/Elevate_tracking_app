@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/utilities/style/app_colors.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_states.dart';
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_view_model.dart';
-import 'package:tracking_app/src/presentation/pages/forget_password/enter_email_widget.dart';
-
+import 'package:tracking_app/src/presentation/pages/forget_password/enter_email_view.dart';
+import 'package:tracking_app/src/presentation/pages/forget_password/otp_confirm_view.dart';
 import '../../../../core/common/common_imports.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -15,7 +16,10 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _currentView = [const EnterEmailWidget()];
+    List<Widget> _currentView = [
+      const EnterEmailView(),
+      const OtpConfirmView()
+    ];
     return BlocProvider(
       create: (_) => viewModel,
       child: SafeArea(
@@ -27,15 +31,40 @@ class ForgetPasswordScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back_ios_new),
           ),
-          title: Text(AppLocalizations.of(context)!.password, style: AppTextStyles.font20Medium,),
+          title: Text(
+            AppLocalizations.of(context)!.password,
+            style: AppTextStyles.font20Medium,
+          ),
         ),
         body: BlocConsumer<ForgetPasswordScreenViewModel,
             ForgetPasswordScreenStates>(
           builder: (context, state) {
-            return const EnterEmailWidget();
+            return _currentView[viewModel.currentStateIndex];
           },
           listener: (context, state) {
-
+            if (state is LoadingState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                 SnackBar(
+                  content: Text(AppLocalizations.of(context)!.loading),
+                ),
+              );
+            }
+            if (state is SuccessState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.message!,
+                    style: AppTextStyles.font14Regular.copyWith(
+                      color: AppColors.kWhiteBase,
+                    ),
+                  ),
+                  backgroundColor: AppColors.kSuccess,
+                ),
+              );
+            }
+            if (state is GoToLoginScreenState) {
+              // navigate to login screen
+            }
           },
         ),
       )),

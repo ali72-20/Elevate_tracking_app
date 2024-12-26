@@ -802,6 +802,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter email associated with your account'**
   String get enterEmailAssociatedWithYourAccount;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

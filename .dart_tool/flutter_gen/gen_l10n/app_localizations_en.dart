@@ -359,4 +359,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterEmailAssociatedWithYourAccount => 'Please enter email associated with your account';
+
+  @override
+  String get loading => 'Loading...';
 }

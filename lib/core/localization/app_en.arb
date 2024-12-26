@@ -117,5 +117,6 @@
   "notifications": "Notifications",
   "forgetPasswordKey": "Forget Password",
   "confirm": "Confirm",
-  "enterEmailAssociatedWithYourAccount": "Please enter email associated with your account"
+  "enterEmailAssociatedWithYourAccount": "Please enter email associated with your account",
+    "loading": "Loading..."
 }
