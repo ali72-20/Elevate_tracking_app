@@ -15,6 +15,14 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
 import '../../src/data/api/api_services.dart' as _i318;
 import '../../src/data/api/network_factory.dart' as _i801;
+import '../../src/data/data_sources/online_data_source/forget_password/forget_password_online_data_source.dart'
+    as _i673;
+import '../../src/data/data_sources/online_data_source/forget_password/forget_password_online_data_source_impl.dart'
+    as _i387;
+import '../../src/data/repositories/forget_password_repository_impl.dart'
+    as _i847;
+import '../../src/domain/repositories/forget_password/forget_password_repository.dart'
+    as _i1032;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,6 +39,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
+    gh.factory<_i673.ForgetPasswordOnlineDataSource>(() =>
+        _i387.ForgetPasswordOnlineDataSourceImpl(gh<_i318.ApiServices>()));
+    gh.factory<_i1032.ForgetPasswordRepository>(() =>
+        _i847.ForgetPasswordRepositoryImpl(
+            gh<_i673.ForgetPasswordOnlineDataSource>()));
     return this;
   }
 }

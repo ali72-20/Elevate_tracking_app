@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-import 'package:tracking_app/src/data/api/core/api_response_models/forget_password/forget_password_email_response_model.dart';
+import 'package:tracking_app/src/data/api/core/api_response_models/forget_password/get_otp_response_model.dart';
 import 'package:tracking_app/src/data/api/core/constants/api_end_points.dart';
 
 import 'core/constants/api_base_url.dart';
@@ -18,6 +18,6 @@ abstract interface class ApiServices{
 
 
   @POST(ApiEndPoints.forgetPassword)
-  Future<ForgetPasswordEmailResponseModel> getOtp(@Body()String email);
+  Future<GetOtpResponseModel> getOtp(@Body()String email);
 
 }
