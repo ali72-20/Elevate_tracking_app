@@ -25,4 +25,11 @@ class LoadingDialog {
       Navigator.pop(context);
     }
   }
+
+
+  static Widget buildLoadingWidget(BuildContext context) {
+    return Center(
+        child: Lottie.asset(
+            height: 200.h, width: 100.w, AppImages.loading));
+  }
 }
