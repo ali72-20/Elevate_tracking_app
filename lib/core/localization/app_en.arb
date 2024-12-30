@@ -125,5 +125,10 @@
   "didnotReceiveCode": "Did not receive the code?",
   "enterEmail" : "Enter Your Email",
   "enterPassword": "Enter Your  Password",
-   "continues": "Continue"
+   "continues": "Continue",
+  "profile": "profile",
+  "editProfile": "Edit Profile",
+  "readyForDelivery": "Ready for delivery",
+  "logoOut": "LogoOut",
+  "languages": "Languages "
 }

@@ -383,4 +383,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continues => 'Continue';
+
+  @override
+  String get profile => 'profile';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get readyForDelivery => 'Ready for delivery';
+
+  @override
+  String get logoOut => 'LogoOut';
+
+  @override
+  String get languages => 'Languages ';
 }

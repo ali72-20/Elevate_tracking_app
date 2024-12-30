@@ -124,6 +124,11 @@
   "didnotReceiveCode": "لم تستلم الرمز؟",
   "enterEmail": "أدخل بريدك الإلكتروني",
   "enterPassword": "أدخل كلمة المرور",
-  "continues": "دخول"
+  "continues": "دخول",
+  "profile": "دخول",
+  "editProfile": "تحديث شخص ",
+  "readyForDelivery": "جاهز للتسليم",
+  "logoOut": "تسيخل الخروح",
+  "languages": "اللعة "
 
 }

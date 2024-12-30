@@ -3,4 +3,5 @@ class PageRoutesName{
   static const String splash = 'splash';
   static const String forgetPassword = 'forgetPassword';
   static const String login = 'Login';
+  static const String profile = 'profile';
 }

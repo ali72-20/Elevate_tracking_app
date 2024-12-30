@@ -383,4 +383,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get continues => 'دخول';
+
+  @override
+  String get profile => 'دخول';
+
+  @override
+  String get editProfile => 'تحديث شخص ';
+
+  @override
+  String get readyForDelivery => 'جاهز للتسليم';
+
+  @override
+  String get logoOut => 'تسيخل الخروح';
+
+  @override
+  String get languages => 'اللعة ';
 }

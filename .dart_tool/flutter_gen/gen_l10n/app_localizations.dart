@@ -850,6 +850,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get continues;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'profile'**
+  String get profile;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @readyForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for delivery'**
+  String get readyForDelivery;
+
+  /// No description provided for @logoOut.
+  ///
+  /// In en, this message translates to:
+  /// **'LogoOut'**
+  String get logoOut;
+
+  /// No description provided for @languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages '**
+  String get languages;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
