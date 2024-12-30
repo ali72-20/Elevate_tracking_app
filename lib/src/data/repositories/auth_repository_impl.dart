@@ -3,6 +3,7 @@ import 'package:tracking_app/core/common/apis/api_executer.dart';
 import 'package:tracking_app/core/common/apis/api_result.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
 import 'package:tracking_app/src/data/data_sources/online_data_source/auth_online_data_source/auth_online_data_source.dart';
+import 'package:tracking_app/src/domain/entities/app_user_entity.dart';
 import 'package:tracking_app/src/domain/entities/login_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth_repository.dart';
 
@@ -19,11 +20,25 @@ class AuthRepositoryImpl implements AuthRepository {
       {required LoginRequest loginRequest, required bool isRememberMe}) async {
     return executeApi<LoginEntity>(
       apiCall: () async {
-        var loginResponseModel = await authOnlineDataSource.login(loginRequest: loginRequest);
+        var loginResponseModel =
+            await authOnlineDataSource.login(loginRequest: loginRequest);
         if (isRememberMe) {
-         await  authOfflineDataSource.saveToken(token: loginResponseModel.token);
+          await authOfflineDataSource.saveToken(
+              token: loginResponseModel.token);
         }
         return loginResponseModel.toDomainDto();
+      },
+    );
+  }
+
+  @override
+  Future<ApiResult<AppUserEntity>> getProfileData() {
+    return executeApi<AppUserEntity>(
+      apiCall: () async {
+        var token = await authOfflineDataSource.getToken();
+        var appUserModel =
+            await authOnlineDataSource.getProfileData(token: token);
+        return appUserModel.driver!.toDomain();
       },
     );
   }

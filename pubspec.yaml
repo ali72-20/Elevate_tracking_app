@@ -59,6 +59,7 @@ dependencies:
   flutter_lints: ^3.0.0
   bloc: ^8.1.4
   lottie: ^3.3.0
+  flutter_svg: ^2.0.17
 
 
 dev_dependencies:

@@ -4,4 +4,5 @@ class PageRoutesName{
   static const String forgetPassword = 'forgetPassword';
   static const String login = 'Login';
   static const String profile = 'profile';
+  static const String applicationApprovedView = 'ApplicationApprovedView';
 }

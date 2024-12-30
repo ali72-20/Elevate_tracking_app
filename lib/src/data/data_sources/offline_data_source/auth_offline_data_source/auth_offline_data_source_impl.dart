@@ -10,9 +10,10 @@ class AuthOfflineDataSourceImpl implements AuthOfflineDataSource {
   @override
   Future<void> saveToken({required String? token}) async {
     if (token != null) {
+
       return await SharedPrefHelper.setSecureString(
         SharedPrefKeys.tokeKey,
-        token
+       "Bearer $token"
       );
     } else {
       throw Exception("Token Is Empty");
@@ -22,5 +23,20 @@ class AuthOfflineDataSourceImpl implements AuthOfflineDataSource {
   @override
   Future<void> deleteToken() async{
   return SharedPrefHelper.removeSecureString(SharedPrefKeys.tokeKey);
+  }
+
+  @override
+  Future<String> getToken()async {
+    try{
+      String ?  token = await SharedPrefHelper.getSecureString(SharedPrefKeys.tokeKey);
+     if(token !=null){
+       return token;
+     }else {
+       throw Exception("Token Is Empty");
+     }
+    }catch(e){
+      throw Exception("Token Is Empty");
+    }
+
   }
 }

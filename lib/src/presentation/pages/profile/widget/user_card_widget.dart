@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/utilities/style/app_fonts.dart';
+import 'package:tracking_app/src/presentation/managers/profile/profile_cubit.dart';
 
 import '../../../../../core/common/common_imports.dart';
 import '../../../../../core/utilities/style/app_colors.dart';
@@ -9,6 +11,7 @@ class UserCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var profileViewModel=context.read<ProfileCubit>();
     return   Card(
       elevation: 5,
       color: AppColors.kWhiteBase,
@@ -29,17 +32,26 @@ class UserCardWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("omar makram dater",
-              style:
-              AppFonts.font18BlackWeight500Font,),
-            verticalSpace(4),
-            Text("John Doe@gmail.com",
-              style:
-              AppFonts.font16kBlackWeight400Font,
+            FittedBox(
+              child: Text(profileViewModel.appUserEntity?.firstName.toString() ?? "",
+                style:
+                AppFonts.font18BlackWeight500Font,),
             ),
-            Text("01154544334",
-             style: AppFonts.font16kBlackWeight400Font,
-
+            verticalSpace(4),
+            FittedBox(
+              child: Text(profileViewModel.appUserEntity?.email.toString() ?? "",
+                style:
+                AppFonts.font16kBlackWeight400Font,
+                maxLines: 1,
+              
+              ),
+            ),
+            FittedBox(
+              child: Text(profileViewModel.appUserEntity?.phone.toString() ?? "",
+               style: AppFonts.font16kBlackWeight400Font,
+                maxLines: 1,
+              
+              ),
             ),
           ],
         ),

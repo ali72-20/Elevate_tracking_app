@@ -3,6 +3,7 @@ import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/src/presentation/pages/forget_password/forget_password_screen.dart';
 import 'package:tracking_app/src/presentation/pages/login/view/login_view.dart';
 import 'package:tracking_app/src/presentation/pages/profile/view/profile_view.dart';
+import '../../src/presentation/pages/application_approved/view/application_approved_view.dart';
 import '../../src/presentation/splash_screen.dart';
 
 class AppRoutes{
@@ -18,6 +19,8 @@ class AppRoutes{
         return _handelMaterialPageRoute(widget: LoginView(), settings: settings);
       case PageRoutesName.profile:
         return _handelMaterialPageRoute(widget: ProfileView(), settings: settings);
+      case PageRoutesName.applicationApprovedView:
+        return _handelMaterialPageRoute(widget: const ApplicationApprovedView(), settings: settings);
       default:
         return _handelMaterialPageRoute(
             settings: settings, widget: const Scaffold());
