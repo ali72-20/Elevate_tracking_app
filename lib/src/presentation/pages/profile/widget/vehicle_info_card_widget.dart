@@ -22,16 +22,16 @@ class VehicleInfoCardWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("omar makram dater",
+            Text("Vehicle info",
               style: AppFonts.font18BlackWeight500Font,
             ),
             verticalSpace(4),
-            Text("John Doe@gmail.com",
+            Text("Bike",
               style: AppFonts.font16kBlackWeight400Font,
 
             ),
             verticalSpace(8),
-            Text("01154544334",
+            Text("UP16DL0007",
               style: AppFonts.font16kBlackWeight400Font,
             ),
           ],

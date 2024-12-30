@@ -9,9 +9,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../src/data/api/api_services.dart' as _i318;
 import '../../src/data/api/network_factory.dart' as _i801;
@@ -35,25 +37,39 @@ import '../../src/domain/repositories/forget_password/forget_password_repository
     as _i1032;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
+import '../../src/domain/use_cases/get_profile_data_use_case.dart' as _i986;
 import '../../src/domain/use_cases/login_use_case.dart' as _i379;
 import '../../src/presentation/managers/forget_password/forget_password_screen_view_model.dart'
     as _i340;
 import '../../src/presentation/managers/login/login_cubit.dart' as _i84;
+import '../../src/presentation/managers/profile/profile_cubit.dart' as _i34;
+import '../../src/presentation/managers/section/section_screen_viewmodel.dart'
+    as _i265;
+import '../helpers/shared_pref/shared_pref_moduel.dart' as _i802;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+    final sharedPrefModule = _$SharedPrefModule();
     final dioProvider = _$DioProvider();
+    gh.factory<_i265.SectionScreenViewmodel>(
+        () => _i265.SectionScreenViewmodel());
+    await gh.factoryAsync<_i460.SharedPreferences>(
+      () => sharedPrefModule.sharedPreferences,
+      preResolve: true,
+    );
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
+    gh.lazySingleton<_i558.FlutterSecureStorage>(
+        () => sharedPrefModule.secureStorage);
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
     gh.factory<_i673.AuthOfflineDataSource>(
         () => _i813.AuthOfflineDataSourceImpl());
@@ -75,10 +91,16 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(authRepository: gh<_i333.AuthRepository>()));
+    gh.factory<_i986.GetProfileDataUseCase>(() => _i986.GetProfileDataUseCase(
+        authRepository: gh<_i333.AuthRepository>()));
+    gh.factory<_i34.ProfileCubit>(
+        () => _i34.ProfileCubit(gh<_i986.GetProfileDataUseCase>()));
     gh.factory<_i84.LoginCubit>(
         () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     return this;
   }
 }
+
+class _$SharedPrefModule extends _i802.SharedPrefModule {}
 
 class _$DioProvider extends _i801.DioProvider {}
