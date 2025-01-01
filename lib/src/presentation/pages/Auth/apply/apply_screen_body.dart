@@ -26,16 +26,20 @@ class ApplyScreenBody extends StatelessWidget {
           const SliverToBoxAdapter(
             child: ApplyForm(),
           ),
-          const SliverToBoxAdapter(
-              child: GenderRadioButtonRow()
-          ),
+          const SliverToBoxAdapter(child: GenderRadioButtonRow()),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 48),
-              child: ElevatedButton(onPressed: (){}, child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Text(context.localization.apply,style: AppTextStyles.font16Regular.copyWith(color: AppColors.kWhiteBase),),
-              )),
+              padding: const EdgeInsets.only(top: 48, bottom: 50),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Text(
+                      context.localization.continueKey,
+                      style: AppTextStyles.font16Regular
+                          .copyWith(color: AppColors.kWhiteBase),
+                    ),
+                  )),
             ),
           )
         ],

@@ -5,7 +5,7 @@ import 'package:tracking_app/src/domain/entities/forget_password/reset_password_
 
 import '../../entities/forget_password/get_otp_response_entity.dart';
 
-abstract interface class ForgetPasswordRepository{
+abstract interface class AuthRepository{
   Future<ApiResult<GetOtpResponseEntity>> getOtp(String email);
   Future<ApiResult<ConfirmOtpEntity>> confirmOtp(String otp);
   Future<ApiResult<ResetPasswordEntity>> resetPassword(String email, String newPassword);

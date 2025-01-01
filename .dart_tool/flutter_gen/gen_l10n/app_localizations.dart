@@ -958,6 +958,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome!!'**
   String get welcome;
+
+  /// No description provided for @continueKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueKey;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

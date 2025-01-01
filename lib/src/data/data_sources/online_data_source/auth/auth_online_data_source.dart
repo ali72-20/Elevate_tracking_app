@@ -7,7 +7,7 @@ import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_p
 
 
 
-abstract interface class ForgetPasswordOnlineDataSource{
+abstract interface class AuthOnlineDataSource{
   Future<GetOtpResponseModel> getOtp(GetOtpRequestModel getOtpRequestModel);
   Future<ConfirmOtpResponseModel> confirmOtp(ConfirmOtpRequestModel confirmOtpRequestModel);
   Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel resetPasswordRequestModel);

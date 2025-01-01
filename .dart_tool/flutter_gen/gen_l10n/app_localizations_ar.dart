@@ -437,4 +437,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get welcome => 'مرحبا!!';
+
+  @override
+  String get continueKey => 'متابعة';
 }

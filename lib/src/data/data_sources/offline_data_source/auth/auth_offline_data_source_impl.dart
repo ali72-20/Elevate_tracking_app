@@ -8,7 +8,18 @@ import 'auth_offline_data_source.dart';
 @Injectable(as: AuthOfflineDataSource)
 class AuthOfflineDataSourceImpl implements AuthOfflineDataSource {
   @override
-  Future<void> saveToken(String token)async{
+  Future<void> saveToken({required String token})async{
     await SharedPrefHelper.setSecureString(SharedPrefKeys.token, token);
   }
+
+  @override
+  Future<void> deleteToken() async{
+    await SharedPrefHelper.removeSecureString(SharedPrefKeys.token);
+  }
+
+  @override
+  Future<String?> getToken() async{
+    return SharedPrefHelper.getSecureString(SharedPrefKeys.token);
+  }
+
 }

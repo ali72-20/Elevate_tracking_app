@@ -13,9 +13,9 @@ import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forg
 
 @injectable
 class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
-  final ForgetPasswordUseCases _forgetPasswordUseCases;
+  final AuthUseCases _authUseCases;
 
-  ForgetPasswordScreenViewModel(this._forgetPasswordUseCases)
+  ForgetPasswordScreenViewModel(this._authUseCases)
       : super(InitialState());
   TextEditingController emailController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
@@ -29,7 +29,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
 
   _getOtp({required bool isResend}) async {
     emit(LoadingState());
-    var response = await _forgetPasswordUseCases.getOtp(emailController.text);
+    var response = await _authUseCases.getOtp(emailController.text);
     switch (response) {
       case Success<GetOtpResponseEntity>():
         if (!isResend) {
@@ -45,7 +45,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
 
   _confirmOtp({required String otp}) async {
     emit(LoadingState());
-    var response = await _forgetPasswordUseCases.confirmOtp(otp);
+    var response = await _authUseCases.confirmOtp(otp);
     switch (response) {
       case Success<ConfirmOtpEntity>():
         emit(SuccessState(message: response.data!.statue));
@@ -103,7 +103,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   _resetPassword() async {
     if (_isValidToResetPassword()) {
       emit(LoadingState());
-      var response = await _forgetPasswordUseCases.resetPassword(
+      var response = await _authUseCases.resetPassword(
           emailController.text, newPasswordController.text);
       switch (response) {
         case Success<ResetPasswordEntity>():

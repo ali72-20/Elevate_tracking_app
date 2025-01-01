@@ -437,4 +437,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome => 'Welcome!!';
+
+  @override
+  String get continueKey => 'Continue';
 }
