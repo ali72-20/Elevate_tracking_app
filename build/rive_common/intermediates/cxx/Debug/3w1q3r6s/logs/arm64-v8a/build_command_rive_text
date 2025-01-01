@@ -1,0 +1,4 @@
+/Users/alisafwat/Library/Android/sdk/cmake/3.22.1/bin/ninja \
+  -C \
+  /Users/alisafwat/.pub-cache/hosted/pub.dev/rive_common-0.4.15/android/.cxx/Debug/3w1q3r6s/arm64-v8a \
+  rive_text
