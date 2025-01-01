@@ -374,4 +374,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get didnotReceiveCode => 'Did not receive the code?';
+
+  @override
+  String get resetPasswordInstruction => 'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
 }

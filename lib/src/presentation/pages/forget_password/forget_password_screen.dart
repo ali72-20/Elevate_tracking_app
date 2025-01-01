@@ -8,6 +8,7 @@ import 'package:tracking_app/src/presentation/managers/forget_password/forget_pa
 import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_view_model.dart';
 import 'package:tracking_app/src/presentation/pages/forget_password/enter_email_view.dart';
 import 'package:tracking_app/src/presentation/pages/forget_password/otp_confirm_view.dart';
+import 'package:tracking_app/src/presentation/pages/forget_password/reset_passowrd_view.dart';
 import '../../../../core/common/common_imports.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -19,7 +20,8 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> _currentView = [
       const EnterEmailView(),
-      const OtpConfirmView()
+      const OtpConfirmView(),
+      const ResetPasswordView()
     ];
     return BlocProvider(
       create: (_) => viewModel,

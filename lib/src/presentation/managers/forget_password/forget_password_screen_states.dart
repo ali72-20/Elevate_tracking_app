@@ -20,3 +20,4 @@ class FailureState extends ForgetPasswordScreenStates{
 class GoToPrevState extends ForgetPasswordScreenStates{}
 class NotValidPasswordState extends ForgetPasswordScreenStates{}
 class NotMatchPasswordState extends ForgetPasswordScreenStates{}
+class ValidationSuccessState extends ForgetPasswordScreenStates{}

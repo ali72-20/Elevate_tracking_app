@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_actions.dart';
 
 import '../../../../core/common/common_imports.dart';
 import '../../managers/forget_password/forget_password_screen_view_model.dart';
@@ -12,7 +13,7 @@ class OtpCodeFormRow extends StatefulWidget {
 
 class _OtpCodeFormRowState extends State<OtpCodeFormRow> {
   final List<TextEditingController> _controllers =
-      List.generate(6, (_) => TextEditingController());
+  List.generate(6, (_) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
 
   @override
@@ -26,10 +27,13 @@ class _OtpCodeFormRowState extends State<OtpCodeFormRow> {
     }
   }
 
+  void _onOtpComplete(String otp) {
+    final viewModel = context.read<ForgetPasswordScreenViewModel>();
+    viewModel.doAction(ConfirmOtpAction(otp: otp));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<ForgetPasswordScreenViewModel>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(6, (index) {
@@ -47,11 +51,16 @@ class _OtpCodeFormRowState extends State<OtpCodeFormRow> {
             ),
             onChanged: (value) {
               if (value.isNotEmpty) {
-                if (value.isNotEmpty && index < 5) {
+                if (index < 5) {
                   FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
-                } else if (value.isEmpty && index > 0) {
-                  FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+                } else {
+                  final otp = _controllers.map((controller) => controller.text).join();
+                  if (otp.length == 6) {
+                    _onOtpComplete(otp);
+                  }
                 }
+              } else if (value.isEmpty && index > 0) {
+                FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
               }
             },
           ),

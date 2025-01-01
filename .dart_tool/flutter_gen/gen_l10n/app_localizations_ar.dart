@@ -374,4 +374,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get didnotReceiveCode => 'لم تستلم الرمز؟';
+
+  @override
+  String get resetPasswordInstruction => 'كلمة السر يجب ان لا تكون فارغة ويجب ان تحتوي علي 6 احرف وحرف كبير ورقم واحد علي الاقل';
 }

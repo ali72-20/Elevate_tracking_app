@@ -15,3 +15,5 @@ class ResetPasswordAction extends ForgetPasswordScreenActions{
   final String? newPassword;
   ResetPasswordAction({this.newPassword});
 }
+
+class ValidateFieldsAction extends ForgetPasswordScreenActions{}

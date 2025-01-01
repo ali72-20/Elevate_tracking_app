@@ -25,7 +25,6 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   GlobalKey<FormState> otpFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> newPasswordKey = GlobalKey<FormState>();
 
-
   int currentStateIndex = 0;
 
   _getOtp({required bool isResend}) async {
@@ -33,7 +32,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
     var response = await _forgetPasswordUseCases.getOtp(emailController.text);
     switch (response) {
       case Success<GetOtpResponseEntity>():
-        if(!isResend) {
+        if (!isResend) {
           _goToNextState();
         }
         emit(SuccessState(message: response.data!.info));
@@ -43,68 +42,72 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
         break;
     }
   }
+
   _confirmOtp({required String otp}) async {
     emit(LoadingState());
     var response = await _forgetPasswordUseCases.confirmOtp(otp);
     switch (response) {
       case Success<ConfirmOtpEntity>():
-        emit(SuccessState());
+        emit(SuccessState(message: response.data!.statue));
+        _goToNextState();
         break;
       case Failures<ConfirmOtpEntity>():
         emit(FailureState(exception: response.exception));
         break;
     }
   }
-  bool _validateNewPassword(){
-    if(newPasswordController.text.isEmpty || newPasswordController.text == null) {
+
+  String? validateNewPassword() {
+    String password = newPasswordController.text;
+    if (password.isEmpty ||
+        password == null ||
+        !AppRegex.isPasswordValid(password)) {
       emit(NotValidPasswordState());
-      return false;
+      return "This password is Not valid";
     }
-    return true;
+    return null;
   }
-  bool _validateConfirmNewPassword() {
-    if (confirmNewPasswordController.text.isEmpty ||
-        confirmNewPasswordController.text == null) {
+
+  String? validateConfirmNewPassword() {
+    String confirmPassword = confirmNewPasswordController.text;
+    if (confirmPassword.isEmpty ||
+        confirmPassword == null ||
+        !AppRegex.isPasswordValid(confirmPassword)) {
       emit(NotValidPasswordState());
-      return false;
+      return "This password is Not valid";
     }
-    return true;
-  }
-  bool _isPasswordMatch() {
     if (newPasswordController.text != confirmNewPasswordController.text) {
+      emit(NotMatchPasswordState());
+      return "Password does not match";
+    }
+    return null;
+  }
+
+  bool _isValidToResetPassword() {
+    if (!newPasswordKey.currentState!.validate()) {
+      emit(NotValidPasswordState());
+      return false;
+    }
+    if (validateNewPassword() != null) {
+      emit(NotValidPasswordState());
+      return false;
+    }
+    if (validateConfirmNewPassword() != null) {
       emit(NotMatchPasswordState());
       return false;
     }
+    emit(ValidationSuccessState());
     return true;
   }
-  bool _isValidToResetPassword(){
-     if(newPasswordKey.currentState!.validate()){
-       emit(NotValidPasswordState());
-       return false;
-     }
-      if(!_validateNewPassword()) {
-        emit(NotValidPasswordState());
-        return false;
-      }
-      if(!_validateConfirmNewPassword()) {
-        return false;
-      }
-      if(!_isPasswordMatch()) {
-        return false;
-      }
-      if(!AppRegex.isPasswordValid(newPasswordController.text)){
-        return false;
-      }
-      return true;
-  }
-  _resetPassword()async {
+
+  _resetPassword() async {
     if (_isValidToResetPassword()) {
       emit(LoadingState());
       var response = await _forgetPasswordUseCases.resetPassword(
           emailController.text, newPasswordController.text);
       switch (response) {
         case Success<ResetPasswordEntity>():
-          emit(SuccessState());
+          emit(SuccessState(message: response.data!.message));
           break;
         case Failures<ResetPasswordEntity>():
           emit(FailureState(exception: response.exception));
@@ -115,6 +118,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   _goToNextState() {
     ++currentStateIndex;
   }
+
   _goToPrevState() {
     if (currentStateIndex - 1 < 0) {
       emit(GoToLoginScreenState());
@@ -131,8 +135,9 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
     }
     return null;
   }
+
   _confirmEmail() async {
-    if(formKey.currentState!.validate()){
+    if (formKey.currentState!.validate()) {
       _getOtp(isResend: false);
     }
   }
@@ -156,6 +161,9 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
         break;
       case ResetPasswordAction():
         _resetPassword();
+        break;
+      case ValidateFieldsAction():
+        _isValidToResetPassword();
         break;
     }
   }

@@ -832,6 +832,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Did not receive the code?'**
   String get didnotReceiveCode;
+
+  /// No description provided for @resetPasswordInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
+  String get resetPasswordInstruction;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
