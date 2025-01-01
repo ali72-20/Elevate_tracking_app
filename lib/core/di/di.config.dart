@@ -19,6 +19,8 @@ import '../../src/data/data_sources/offline_data_source/auth/auth_offline_data_s
     as _i252;
 import '../../src/data/data_sources/offline_data_source/auth/auth_offline_data_source_impl.dart'
     as _i523;
+import '../../src/data/data_sources/offline_data_source/country/country_offline_data_source.dart'
+    as _i472;
 import '../../src/data/data_sources/online_data_source/auth/auth_online_data_source.dart'
     as _i154;
 import '../../src/data/data_sources/online_data_source/auth/auth_online_data_source_impl.dart'
@@ -28,14 +30,15 @@ import '../../src/data/data_sources/online_data_source/vehicles/vehicles_online_
 import '../../src/data/data_sources/online_data_source/vehicles/vehicles_online_data_source_impl.dart'
     as _i523;
 import '../../src/data/repositories/auth/auth_repository_impl.dart' as _i188;
+import '../../src/data/repositories/country/country_repo_impl.dart' as _i668;
 import '../../src/data/repositories/vehicles/vehicles_repo_impl.dart' as _i732;
 import '../../src/domain/repositories/auth/auth_repository.dart' as _i701;
+import '../../src/domain/repositories/country/country_repo.dart' as _i597;
 import '../../src/domain/repositories/vehicles/vehciles_repo.dart' as _i557;
+import '../../src/domain/use_cases/country/country_use_case.dart' as _i176;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
 import '../../src/domain/use_cases/vehicles/vehicles_use_cases.dart' as _i684;
-import '../../src/presentation/managers/Auth/apply/apply_screen_view_model.dart'
-    as _i675;
 import '../../src/presentation/managers/Auth/apply/controller_manager.dart'
     as _i94;
 import '../../src/presentation/managers/Auth/apply/validator_manager.dart'
@@ -64,8 +67,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
     gh.factory<_i633.VehiclesOnlineDataSource>(
         () => _i523.VehiclesOnlineDataSourceImpl(gh<_i318.ApiServices>()));
+    gh.factory<_i597.CountryRepo>(
+        () => _i668.CountryRepoImpl(gh<_i472.CountryOfflineDataSource>()));
     gh.factory<_i154.AuthOnlineDataSource>(
         () => _i956.AuthOnlineDataSourceImpl(gh<_i318.ApiServices>()));
+    gh.factory<_i176.CountryUseCase>(
+        () => _i176.CountryUseCase(gh<_i597.CountryRepo>()));
     gh.factory<_i701.AuthRepository>(() => _i188.AuthRepositoryImpl(
           gh<_i154.AuthOnlineDataSource>(),
           gh<_i252.AuthOfflineDataSource>(),
@@ -78,11 +85,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
-    gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
-          gh<_i684.VehiclesUseCases>(),
-          gh<_i94.ControllerManager>(),
-          gh<_i195.ValidatorManager>(),
-        ));
     return this;
   }
 }

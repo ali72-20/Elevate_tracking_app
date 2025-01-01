@@ -12,6 +12,8 @@ class ControllerManager{
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController idNumberController = TextEditingController();
+  TextEditingController vehicleLicenseController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
   TextEditingController getController(ApplyScreenFormFields controller){
     switch (controller) {
       case ApplyScreenFormFields.firstLegalName:
@@ -26,6 +28,10 @@ class ControllerManager{
         return phoneNumberController;
       case ApplyScreenFormFields.idNumber:
         return idNumberController;
+      case ApplyScreenFormFields.vehicleLicense:
+        return vehicleLicenseController;
+      case ApplyScreenFormFields.country:
+        return countryController;
     }
   }
 }

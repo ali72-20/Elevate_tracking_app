@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/common/apis/api_result.dart';
+import 'package:tracking_app/src/domain/entities/country/country_entity.dart';
 import 'package:tracking_app/src/domain/entities/vehciles/vehicles_entity.dart';
+import 'package:tracking_app/src/domain/use_cases/country/country_use_case.dart';
 import 'package:tracking_app/src/domain/use_cases/vehicles/vehicles_use_cases.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_states.dart';
@@ -12,11 +14,16 @@ import 'package:tracking_app/src/presentation/managers/Auth/apply/validator_mana
 @injectable
 class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   final VehiclesUseCases _vehiclesUseCases;
+  final CountryUseCase _countryUseCase;
   final ControllerManager _controllerManager;
   final ValidatorManager _validatorManager;
   GlobalKey<FormState> applyFormKey = GlobalKey<FormState>();
   Gender selectedGender = Gender.none;
-  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._validatorManager): super(InitialState());
+  List<CountryEntity> countries = [];
+
+
+
+  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._validatorManager,this._countryUseCase): super(InitialState());
 
   TextEditingController getController(ApplyScreenFormFields controller){
     return _controllerManager.getController(controller);
@@ -34,6 +41,10 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
         break;
     }
   }
+  _getCountries() async{
+    var response = await _countryUseCase.getCountries();
+    countries = response;
+  }
 
   void doAction(ApplyScreenActions action){
     switch (action) {
@@ -41,7 +52,7 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
         _getAllVehicles();
         break;
       case GetCountriesAction():
-
+        _getCountries();
         break;
     }
   }
@@ -50,6 +61,8 @@ enum ApplyScreenFormFields{
     firstLegalName,
     secondLegalName,
     vehicleNumber,
+    vehicleLicense,
+    country,
     email,
     phoneNumber,
     idNumber,
