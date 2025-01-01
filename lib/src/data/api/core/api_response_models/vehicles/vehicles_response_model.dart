@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tracking_app/src/domain/entities/vehciles/vehicles_entity.dart';
 
 part 'vehicles_response_model.g.dart';
 
@@ -24,6 +25,13 @@ class VehiclesResponseModel {
   Map<String, dynamic> toJson() {
     return _$VehiclesResponseModelToJson(this);
   }
+  VehiclesResponseEntity toDomain(){
+    return VehiclesResponseEntity(
+      message: message,
+      metadata: metadata?.toDomain(),
+      vehicles: vehicles?.map((e) => e.toDomain()).toList(),
+    );
+  }
 }
 
 @JsonSerializable()
@@ -35,7 +43,7 @@ class Metadata {
   @JsonKey(name: "limit")
   final int? limit;
 
-  Metadata ({
+  Metadata({
     this.currentPage,
     this.numberOfPages,
     this.limit,
@@ -47,6 +55,14 @@ class Metadata {
 
   Map<String, dynamic> toJson() {
     return _$MetadataToJson(this);
+  }
+
+  MetadataEntity toDomain() {
+    return MetadataEntity(
+      currentPage: currentPage,
+      numberOfPages: numberOfPages,
+      limit: limit,
+    );
   }
 }
 
@@ -77,6 +93,15 @@ class Vehicles {
 
   Map<String, dynamic> toJson() {
     return _$VehiclesToJson(this);
+  }
+  VehiclesEntity toDomain() {
+    return VehiclesEntity(
+      Id: Id,
+      type: type,
+      image: image,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
   }
 }
 

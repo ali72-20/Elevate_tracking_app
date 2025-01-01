@@ -29,12 +29,19 @@ import '../../src/data/data_sources/online_data_source/vehicles/vehicles_online_
     as _i523;
 import '../../src/data/repositories/forget_password_repository_impl.dart'
     as _i847;
+import '../../src/data/repositories/vehicles/vehicles_repo_impl.dart' as _i732;
 import '../../src/domain/repositories/forget_password/forget_password_repository.dart'
     as _i1032;
+import '../../src/domain/repositories/vehicles/vehciles_repo.dart' as _i557;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
+import '../../src/domain/use_cases/vehicles/vehicles_use_cases.dart' as _i684;
 import '../../src/presentation/managers/Auth/apply/apply_screen_view_model.dart'
     as _i675;
+import '../../src/presentation/managers/Auth/apply/controller_manager.dart'
+    as _i94;
+import '../../src/presentation/managers/Auth/apply/validator_manager.dart'
+    as _i195;
 import '../../src/presentation/managers/Auth/forget_password/forget_password_screen_view_model.dart'
     as _i762;
 
@@ -50,7 +57,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final dioProvider = _$DioProvider();
-    gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel());
+    gh.factory<_i94.ControllerManager>(() => _i94.ControllerManager());
+    gh.factory<_i195.ValidatorManager>(() => _i195.ValidatorManager());
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
@@ -67,9 +75,18 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i235.ForgetPasswordUseCases>(() =>
         _i235.ForgetPasswordUseCases(gh<_i1032.ForgetPasswordRepository>()));
+    gh.factory<_i557.VehiclesRepo>(
+        () => _i732.VehicleRepoImpl(gh<_i633.VehiclesOnlineDataSource>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(() =>
         _i762.ForgetPasswordScreenViewModel(
             gh<_i235.ForgetPasswordUseCases>()));
+    gh.factory<_i684.VehiclesUseCases>(
+        () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
+    gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
+          gh<_i684.VehiclesUseCases>(),
+          gh<_i94.ControllerManager>(),
+          gh<_i195.ValidatorManager>(),
+        ));
     return this;
   }
 }

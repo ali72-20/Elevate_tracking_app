@@ -377,4 +377,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resetPasswordInstruction => 'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get joinOurTeam => 'You want to be a delivery man?\nJoin our team';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get firstLegalName => 'First Legal Name';
+
+  @override
+  String get secondLegalName => 'Second Legal Name';
+
+  @override
+  String get vehicleType => 'Vehicle Type';
+
+  @override
+  String get vehicleNumber => 'Vehicle Number';
+
+  @override
+  String get idNumber => 'ID Number';
+
+  @override
+  String get vehicleLicense => 'Vehicle License';
+
+  @override
+  String get idImage => 'ID Image';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get enterFirstLegalName => 'Enter First Legal Name';
+
+  @override
+  String get enterSecondLegalName => 'Enter Second Legal Name';
+
+  @override
+  String get enterVehicleNumber => 'Enter Vehicle Number';
+
+  @override
+  String get enterIdNumber => 'Enter National ID Number';
+
+  @override
+  String get uploadVehicleLicense => 'Upload Vehicle License';
+
+  @override
+  String get uploadIdImage => 'Upload ID Image';
+
+  @override
+  String get welcome => 'Welcome!!';
 }
