@@ -57,6 +57,7 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   }
   bool _validateNewPassword(){
     if(newPasswordController.text.isEmpty || newPasswordController.text == null) {
+      emit(NotValidPasswordState());
       return false;
     }
     return true;
@@ -64,21 +65,25 @@ class ForgetPasswordScreenViewModel extends Cubit<ForgetPasswordScreenStates> {
   bool _validateConfirmNewPassword() {
     if (confirmNewPasswordController.text.isEmpty ||
         confirmNewPasswordController.text == null) {
+      emit(NotValidPasswordState());
       return false;
     }
     return true;
   }
   bool _isPasswordMatch() {
     if (newPasswordController.text != confirmNewPasswordController.text) {
+      emit(NotMatchPasswordState());
       return false;
     }
     return true;
   }
   bool _isValidToResetPassword(){
      if(newPasswordKey.currentState!.validate()){
+       emit(NotValidPasswordState());
        return false;
      }
       if(!_validateNewPassword()) {
+        emit(NotValidPasswordState());
         return false;
       }
       if(!_validateConfirmNewPassword()) {

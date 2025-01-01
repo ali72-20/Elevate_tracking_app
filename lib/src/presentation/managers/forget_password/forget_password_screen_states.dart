@@ -18,3 +18,5 @@ class FailureState extends ForgetPasswordScreenStates{
   FailureState({this.exception});
 }
 class GoToPrevState extends ForgetPasswordScreenStates{}
+class NotValidPasswordState extends ForgetPasswordScreenStates{}
+class NotMatchPasswordState extends ForgetPasswordScreenStates{}
