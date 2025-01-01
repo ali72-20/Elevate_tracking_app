@@ -14,6 +14,8 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   final VehiclesUseCases _vehiclesUseCases;
   final ControllerManager _controllerManager;
   final ValidatorManager _validatorManager;
+  GlobalKey<FormState> applyFormKey = GlobalKey<FormState>();
+  Gender selectedGender = Gender.none;
   ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._validatorManager): super(InitialState());
 
   TextEditingController getController(ApplyScreenFormFields controller){
@@ -51,4 +53,10 @@ enum ApplyScreenFormFields{
     email,
     phoneNumber,
     idNumber,
+}
+
+enum Gender{
+  none,
+  male,
+  female
 }

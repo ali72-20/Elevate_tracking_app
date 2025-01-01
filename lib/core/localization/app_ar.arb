@@ -142,5 +142,6 @@
   "enterIdNumber": "أدخل رقم الهوية",
   "uploadVehicleLicense": "تحميل رخصة السيارة",
   "uploadIdImage": "تحميل صورة الهوية",
-  "welcome": "مرحبا!!"
+  "welcome": "مرحبا!!",
+  "continue": "متابعة",
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/common/common_imports.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
@@ -22,7 +23,7 @@ class ApplyScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-              AppLocalizations.of(context)!.apply,
+              context.localization.apply,
               style: AppTextStyles.font20Medium,
             ),
             leading: IconButton(

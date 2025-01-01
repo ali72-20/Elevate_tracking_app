@@ -143,5 +143,6 @@
   "enterIdNumber": "Enter National ID Number",
   "uploadVehicleLicense": "Upload Vehicle License",
   "uploadIdImage": "Upload ID Image",
-  "welcome": "Welcome!!"
+  "welcome": "Welcome!!",
+  "continue": "Continue"
 }

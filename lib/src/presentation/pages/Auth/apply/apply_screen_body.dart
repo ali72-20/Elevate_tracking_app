@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/common/common_imports.dart';
+import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/core/utilities/style/spacing.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
@@ -27,6 +28,15 @@ class ApplyScreenBody extends StatelessWidget {
           ),
           const SliverToBoxAdapter(
               child: GenderRadioButtonRow()
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 48),
+              child: ElevatedButton(onPressed: (){}, child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Text(context.localization.apply,style: AppTextStyles.font16Regular.copyWith(color: AppColors.kWhiteBase),),
+              )),
+            ),
           )
         ],
       ),
@@ -38,12 +48,12 @@ class ApplyScreenBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          AppLocalizations.of(context)!.welcome,
+          context.localization.welcome,
           style: AppTextStyles.font20Medium,
         ),
         verticalSpace(8),
         Text(
-          AppLocalizations.of(context)!.joinOurTeam,
+          context.localization.joinOurTeam,
           style: AppTextStyles.font16Medium.copyWith(color: AppColors.kGray),
         )
       ],
