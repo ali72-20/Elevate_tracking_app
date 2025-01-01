@@ -26,6 +26,7 @@ class _OtpCodeFormRowState extends State<OtpCodeFormRow> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<ForgetPasswordScreenViewModel>();
