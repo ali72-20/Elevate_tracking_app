@@ -16,17 +16,25 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   final VehiclesUseCases _vehiclesUseCases;
   final CountryUseCase _countryUseCase;
   final ControllerManager _controllerManager;
-  final ValidatorManager _validatorManager;
   GlobalKey<FormState> applyFormKey = GlobalKey<FormState>();
   Gender selectedGender = Gender.none;
   List<CountryEntity> countries = [];
+  CountryEntity selectedCountry = CountryEntity();
+  VehiclesResponseEntity selectedVehicle = VehiclesResponseEntity();
 
 
-
-  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._validatorManager,this._countryUseCase): super(InitialState());
+  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._countryUseCase): super(InitialState());
 
   TextEditingController getController(ApplyScreenFormFields controller){
     return _controllerManager.getController(controller);
+  }
+
+  String? validateField(ApplyScreenFormFields field){
+    String value = _controllerManager.getController(field).text;
+    if(value.isEmpty){
+      return "This field is required";
+    }
+    return null;
   }
 
   _getAllVehicles() async{
@@ -41,10 +49,13 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
         break;
     }
   }
+
   _getCountries() async{
     var response = await _countryUseCase.getCountries();
     countries = response;
   }
+
+  _applyNewUser() async{}
 
   void doAction(ApplyScreenActions action){
     switch (action) {
@@ -53,6 +64,9 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
         break;
       case GetCountriesAction():
         _getCountries();
+        break;
+      case ApplyNewUserAction():
+        _applyNewUser();
         break;
     }
   }

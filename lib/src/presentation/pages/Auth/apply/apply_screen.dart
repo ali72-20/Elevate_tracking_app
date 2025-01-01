@@ -17,6 +17,7 @@ class ApplyScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         viewModel.doAction(GetAllVehiclesAction());
+        viewModel.doAction(GetCountriesAction());
         return viewModel;
       },
       child: SafeArea(
@@ -27,7 +28,9 @@ class ApplyScreen extends StatelessWidget {
               style: AppTextStyles.font20Medium,
             ),
             leading: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.arrow_back_ios_new)),
+                onPressed: () {
+                  viewModel.doAction(ApplyNewUserAction());
+                }, icon: const Icon(Icons.arrow_back_ios_new)),
           ),
           body: const ApplyScreenBody(),
         ),

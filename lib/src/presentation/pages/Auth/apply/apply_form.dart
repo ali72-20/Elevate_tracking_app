@@ -35,6 +35,10 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.firstLegalName);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -49,6 +53,10 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.secondLegalName);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -63,6 +71,10 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.vehicleNumber);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -77,15 +89,16 @@ class ApplyForm extends StatelessWidget {
             TextFormField(
               readOnly: true,
               decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.file_upload)),
-                  hintStyle: AppTextStyles.font14Regular
-                      .copyWith(color: AppColors.kWhite70),
-                  hintText: context.localization.uploadVehicleLicense,
-                  label: Text(
-                    context.localization.vehicleLicense,
-                    style: AppTextStyles.font12Regular,
-                  )),
+                suffixIcon: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                hintStyle: AppTextStyles.font14Regular
+                    .copyWith(color: AppColors.kWhite70),
+                hintText: context.localization.uploadVehicleLicense,
+                label: Text(
+                  context.localization.vehicleLicense,
+                  style: AppTextStyles.font12Regular,
+                ),
+              ),
             ),
             verticalSpace(24),
             TextFormField(
@@ -99,6 +112,9 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel.validateField(ApplyScreenFormFields.email);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -113,6 +129,10 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.phoneNumber);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -127,19 +147,23 @@ class ApplyForm extends StatelessWidget {
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
               ),
+              validator: (value) {
+                return viewModel.validateField(ApplyScreenFormFields.idNumber);
+              },
             ),
             verticalSpace(24),
             TextFormField(
               decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.file_upload)),
-                  hintStyle: AppTextStyles.font14Regular
-                      .copyWith(color: AppColors.kWhite70),
-                  hintText: context.localization.uploadIdImage,
-                  label: Text(
-                    context.localization.idImage,
-                    style: AppTextStyles.font12Regular,
-                  )),
+                suffixIcon: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                hintStyle: AppTextStyles.font14Regular
+                    .copyWith(color: AppColors.kWhite70),
+                hintText: context.localization.uploadIdImage,
+                label: Text(
+                  context.localization.idImage,
+                  style: AppTextStyles.font12Regular,
+                ),
+              ),
             )
           ],
         ),
