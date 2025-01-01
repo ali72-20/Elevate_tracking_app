@@ -833,137 +833,23 @@ abstract class AppLocalizations {
   /// **'Did not receive the code?'**
   String get didnotReceiveCode;
 
-  /// No description provided for @resetPasswordInstruction.
+  /// No description provided for @enterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
-  String get resetPasswordInstruction;
+  /// **'Enter Your Email'**
+  String get enterEmail;
 
-  /// No description provided for @apply.
+  /// No description provided for @enterPassword.
   ///
   /// In en, this message translates to:
-  /// **'Apply'**
-  String get apply;
+  /// **'Enter Your  Password'**
+  String get enterPassword;
 
-  /// No description provided for @joinOurTeam.
-  ///
-  /// In en, this message translates to:
-  /// **'You want to be a delivery man?\nJoin our team'**
-  String get joinOurTeam;
-
-  /// No description provided for @country.
-  ///
-  /// In en, this message translates to:
-  /// **'Country'**
-  String get country;
-
-  /// No description provided for @firstLegalName.
-  ///
-  /// In en, this message translates to:
-  /// **'First Legal Name'**
-  String get firstLegalName;
-
-  /// No description provided for @secondLegalName.
-  ///
-  /// In en, this message translates to:
-  /// **'Second Legal Name'**
-  String get secondLegalName;
-
-  /// No description provided for @vehicleType.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicle Type'**
-  String get vehicleType;
-
-  /// No description provided for @vehicleNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicle Number'**
-  String get vehicleNumber;
-
-  /// No description provided for @idNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'ID Number'**
-  String get idNumber;
-
-  /// No description provided for @vehicleLicense.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicle License'**
-  String get vehicleLicense;
-
-  /// No description provided for @idImage.
-  ///
-  /// In en, this message translates to:
-  /// **'ID Image'**
-  String get idImage;
-
-  /// No description provided for @gender.
-  ///
-  /// In en, this message translates to:
-  /// **'Gender'**
-  String get gender;
-
-  /// No description provided for @male.
-  ///
-  /// In en, this message translates to:
-  /// **'Male'**
-  String get male;
-
-  /// No description provided for @female.
-  ///
-  /// In en, this message translates to:
-  /// **'Female'**
-  String get female;
-
-  /// No description provided for @enterFirstLegalName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter First Legal Name'**
-  String get enterFirstLegalName;
-
-  /// No description provided for @enterSecondLegalName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter Second Legal Name'**
-  String get enterSecondLegalName;
-
-  /// No description provided for @enterVehicleNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter Vehicle Number'**
-  String get enterVehicleNumber;
-
-  /// No description provided for @enterIdNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter National ID Number'**
-  String get enterIdNumber;
-
-  /// No description provided for @uploadVehicleLicense.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload Vehicle License'**
-  String get uploadVehicleLicense;
-
-  /// No description provided for @uploadIdImage.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload ID Image'**
-  String get uploadIdImage;
-
-  /// No description provided for @welcome.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome!!'**
-  String get welcome;
-
-  /// No description provided for @continueKey.
+  /// No description provided for @continues.
   ///
   /// In en, this message translates to:
   /// **'Continue'**
-  String get continueKey;
+  String get continues;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

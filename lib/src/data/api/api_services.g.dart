@@ -38,7 +38,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'drivers/forgotPassword',
+          'forgotPassword',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -73,7 +73,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'drivers/verifyResetCode',
+          'verifyResetCode',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -86,108 +86,6 @@ class _ApiServices implements ApiServices {
     late ConfirmOtpResponseModel _value;
     try {
       _value = ConfirmOtpResponseModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<ResetPasswordResponseModel> resetPassword(
-      ResetPasswordRequestModel resetPasswordRequestModel) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(resetPasswordRequestModel.toJson());
-    final _options = _setStreamType<ResetPasswordResponseModel>(Options(
-      method: 'PUT',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'drivers/resetPassword',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ResetPasswordResponseModel _value;
-    try {
-      _value = ResetPasswordResponseModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<ApplyResponseModel> apply(ApplyRequestModel applyRequestModel) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(applyRequestModel.toJson());
-    final _options = _setStreamType<ApplyResponseModel>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'drivers/apply',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApplyResponseModel _value;
-    try {
-      _value = ApplyResponseModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<VehiclesResponseModel> getAllVehicles() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<VehiclesResponseModel>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'vehicles',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late VehiclesResponseModel _value;
-    try {
-      _value = VehiclesResponseModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
