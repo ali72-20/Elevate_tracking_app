@@ -17,3 +17,7 @@ extension ContextExtension on BuildContext {
   /// usage: context.width
   double get width => MediaQuery.of(this).size.width;
 }
+
+extension AppLocalization on BuildContext{
+  AppLocalizations get  localizations => AppLocalizations.of(this)!;
+}

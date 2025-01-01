@@ -350,4 +350,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notifications => 'الإشعارات';
+
+  @override
+  String get forgetPasswordKey => 'نسيت كلمة السر';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get enterEmailAssociatedWithYourAccount => 'أدخل البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get loading => 'جار التحميل';
+
+  @override
+  String get emailVerification => 'تحقق من البريد الإلكتروني';
+
+  @override
+  String get enterOtpCode => 'من فضلك ادخل رمز التحقق المرسل علي البريد الالكتروني الخاص بكم';
+
+  @override
+  String get resend => 'اعادة ارسال';
+
+  @override
+  String get didnotReceiveCode => 'لم تستلم الرمز؟';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get continues => 'دخول';
 }

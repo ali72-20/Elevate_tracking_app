@@ -350,4 +350,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifications => 'Notifications';
+
+  @override
+  String get forgetPasswordKey => 'Forget Password';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get enterEmailAssociatedWithYourAccount => 'Please enter email associated with your account';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get emailVerification => 'Email Verification';
+
+  @override
+  String get enterOtpCode => 'Please enter your code that send to your email address ';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get didnotReceiveCode => 'Did not receive the code?';
+
+  @override
+  String get enterEmail => 'Enter Your Email';
+
+  @override
+  String get enterPassword => 'Enter Your  Password';
+
+  @override
+  String get continues => 'Continue';
 }
