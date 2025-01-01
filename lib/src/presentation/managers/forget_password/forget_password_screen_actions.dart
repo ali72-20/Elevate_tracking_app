@@ -7,3 +7,11 @@ class ResendOtpAction extends ForgetPasswordScreenActions{
   final bool isResend;
   ResendOtpAction({this.isResend = true});
 }
+class ConfirmOtpAction extends ForgetPasswordScreenActions{
+  final String? otp;
+  ConfirmOtpAction({this.otp});
+}
+class ResetPasswordAction extends ForgetPasswordScreenActions{
+  final String? newPassword;
+  ResetPasswordAction({this.newPassword});
+}
