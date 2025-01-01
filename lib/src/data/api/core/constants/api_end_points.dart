@@ -1,7 +1,8 @@
 class ApiEndPoints{
   ApiEndPoints._();
-  static const String forgetPassword = "forgotPassword";
-  static const String verifyResetCode = "verifyResetCode";
-  static const String resetPassword = "resetPassword";
-  static const String apply = "apply";
+  static const String forgetPassword = "drivers/forgotPassword";
+  static const String verifyResetCode = "drivers/verifyResetCode";
+  static const String resetPassword = "drivers/resetPassword";
+  static const String apply = "drivers/apply";
+  static const String vehicles = "vehicles";
 }
