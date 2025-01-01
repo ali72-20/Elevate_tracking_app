@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_app/src/presentation/managers/forget_password/forget_password_screen_actions.dart';
+import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forget_password_screen_actions.dart';
 
-import '../../../../core/common/common_imports.dart';
-import '../../managers/forget_password/forget_password_screen_view_model.dart';
+import '../../../../../core/common/common_imports.dart';
+import '../../../managers/Auth/forget_password/forget_password_screen_view_model.dart';
 
 class OtpCodeFormRow extends StatefulWidget {
   const OtpCodeFormRow({super.key});
