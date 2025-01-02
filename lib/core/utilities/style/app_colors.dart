@@ -38,7 +38,7 @@ class AppColors{
   static const Color kSuccess = Color(0xFF0CB359);
   static const Color kBlue = Colors.blue;
   static const Color kLightBink = Color(0xFFF9ECF0);
-
+   static const Color lightGray=Color(0xFF878787);
   // Black Shades
   static const Color kBlack = Color(0xFF000000);
   static const Color kBlack10 = Color(0xFFcecfd0);
