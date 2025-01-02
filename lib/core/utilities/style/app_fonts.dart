@@ -26,4 +26,5 @@ class AppFonts{
       fontWeight: FontWeight.w400,
       color: AppColors.kBlackBase
   );
+
 }
