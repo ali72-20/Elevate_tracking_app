@@ -1,4 +1,4 @@
-class ApiEndPoints{
+class ApiEndPoints {
   ApiEndPoints._();
   static const String login = "drivers/signin";
   static const String forgetPassword = "drivers/forgotPassword";
@@ -6,4 +6,5 @@ class ApiEndPoints{
   static const String resetPassword = "drivers/resetPassword";
   static const String apply = "drivers/apply";
   static const String vehicles = "vehicles";
+  static const String driverData = "drivers/profile-data";
 }
