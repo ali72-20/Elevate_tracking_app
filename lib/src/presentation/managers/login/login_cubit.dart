@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tracking_app/src/domain/entities/login_entity.dart';
 import '../../../../core/common/apis/api_result.dart';
 import '../../../data/api/core/api_request_models/login_request/login_request.dart';
+import '../../../domain/entities/auth/login_entity.dart';
 import '../../../domain/use_cases/login_use_case.dart';
 import 'login_action.dart';
 
