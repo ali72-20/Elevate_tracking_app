@@ -383,4 +383,79 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get continues => 'دخول';
+
+  @override
+  String get resetPasswordInstruction => 'كلمة السر يجب ان لا تكون فارغة ويجب ان تحتوي علي 6 احرف وحرف كبير ورقم واحد علي الاقل';
+
+  @override
+  String get apply => 'تطبيق';
+
+  @override
+  String get joinOurTeam => 'هل تريد أن تكون سائق توصيل؟\nانضم إلى فريقنا';
+
+  @override
+  String get country => 'البلد';
+
+  @override
+  String get firstLegalName => 'الاسم القانوني الأول';
+
+  @override
+  String get secondLegalName => 'الاسم القانوني الثاني';
+
+  @override
+  String get vehicleType => 'نوع السيارة';
+
+  @override
+  String get vehicleNumber => 'رقم السيارة';
+
+  @override
+  String get idNumber => 'رقم الهوية';
+
+  @override
+  String get vehicleLicense => 'رخصة السيارة';
+
+  @override
+  String get idImage => 'صورة الهوية';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'أنثى';
+
+  @override
+  String get enterFirstLegalName => 'أدخل الاسم القانوني الأول';
+
+  @override
+  String get enterSecondLegalName => 'أدخل الاسم القانوني الثاني';
+
+  @override
+  String get enterVehicleNumber => 'أدخل رقم السيارة';
+
+  @override
+  String get enterIdNumber => 'أدخل رقم الهوية';
+
+  @override
+  String get uploadVehicleLicense => 'تحميل رخصة السيارة';
+
+  @override
+  String get uploadIdImage => 'تحميل صورة الهوية';
+
+  @override
+  String get welcome => 'مرحبا!!';
+
+  @override
+  String get continueKey => 'متابعة';
+
+  @override
+  String get welcomeTo => 'مرحبا بك في';
+
+  @override
+  String get floweryRiderApp => 'تطبيق Flowery Rider';
+
+  @override
+  String get applyNow => 'قدم الآن';
 }
