@@ -1,2 +1,0 @@
-ninja: Entering directory `/Users/alisafwat/.pub-cache/hosted/pub.dev/rive_common-0.4.15/android/.cxx/Debug/3w1q3r6s/armeabi-v7a'
-ninja: no work to do.

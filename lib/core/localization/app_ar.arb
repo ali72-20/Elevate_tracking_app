@@ -124,9 +124,7 @@
   "didnotReceiveCode": "لم تستلم الرمز؟",
   "enterEmail": "أدخل بريدك الإلكتروني",
   "enterPassword": "أدخل كلمة المرور",
-  "continues": "دخول"
-
-  "didnotReceiveCode": "لم تستلم الرمز؟",
+  "continues": "دخول",
   "resetPasswordInstruction": "كلمة السر يجب ان لا تكون فارغة ويجب ان تحتوي علي 6 احرف وحرف كبير ورقم واحد علي الاقل",
   "apply": "تطبيق",
   "joinOurTeam": "هل تريد أن تكون سائق توصيل؟\nانضم إلى فريقنا",
