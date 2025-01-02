@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/core/utilities/style/app_colors.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/src/data/api/core/errors/error_handler.dart';
@@ -8,6 +9,7 @@ import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forg
 import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forget_password_screen_view_model.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/forget_password/enter_email_view.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/forget_password/otp_confirm_view.dart';
+import 'package:tracking_app/src/tracking_app.dart';
 
 import '../../../../../core/common/common_imports.dart';
 import 'reset_passowrd_view.dart';
@@ -80,7 +82,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               );
             }
             if (state is GoToLoginScreenState) {
-              // navigate to login screen
+                navKey.currentState!.pushNamed(PageRoutesName.login);
             }
           },
         ),

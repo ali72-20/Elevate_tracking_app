@@ -7,6 +7,7 @@ import 'package:tracking_app/src/data/api/core/api_request_models/login_request/
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_password/get_otp_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_password/reset_password_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
+import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/logout_response_model.dart';
 import 'package:tracking_app/src/data/data_sources/online_data_source/auth/auth_online_data_source.dart';
 @Injectable(as: AuthOnlineDataSource)
@@ -36,5 +37,4 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   Future<LogOutResponseModel> logOut({required String token}) async{
     return await _apiServices.logout("Bearer $token");
   }
-
 }

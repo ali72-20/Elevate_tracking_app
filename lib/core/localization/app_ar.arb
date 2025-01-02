@@ -146,5 +146,8 @@
   "uploadVehicleLicense": "تحميل رخصة السيارة",
   "uploadIdImage": "تحميل صورة الهوية",
   "welcome": "مرحبا!!",
-  "continueKey": "متابعة"
+  "continueKey": "متابعة",
+  "welcomeTo": "مرحبا بك في",
+  "floweryRiderApp": "تطبيق Flowery Rider",
+  "applyNow": "قدم الآن"
 }
