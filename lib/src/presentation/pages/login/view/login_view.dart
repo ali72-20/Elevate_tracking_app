@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/src/data/api/core/errors/error_handler.dart';
+import 'package:tracking_app/src/tracking_app.dart';
+
 import '../../../../../core/di/di.dart';
 import '../../../../../core/utilities/dialogs/awesome_dialoge.dart';
 import '../../../../../core/utilities/dialogs/loading_dialog.dart';
@@ -64,7 +66,12 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
-  void _navigateToBaseScreen() {}
+  void _navigateToBaseScreen() {
+    navKey.currentState!.pushNamedAndRemoveUntil(
+      PageRoutesName.sectionScreen,
+      (route) => false,
+    );
+  }
 
   void _navigateToForgetPasswordScreen() {
     Navigator.pushNamed(context, PageRoutesName.forgetPassword);

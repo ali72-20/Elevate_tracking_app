@@ -4,6 +4,7 @@ import 'package:tracking_app/src/domain/entities/forget_password/confime_otp_ent
 import 'package:tracking_app/src/domain/entities/forget_password/reset_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/login_entity.dart';
 
+import '../../entities/DriverData.dart';
 import '../../entities/forget_password/get_otp_response_entity.dart';
 
 abstract interface class AuthRepository {
@@ -16,4 +17,6 @@ abstract interface class AuthRepository {
 
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
       String email, String newPassword);
+
+  Future<ApiResult<DriverEntity>> getDriverData();
 }

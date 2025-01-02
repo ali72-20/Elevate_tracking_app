@@ -41,6 +41,7 @@ import '../../src/domain/use_cases/country/country_use_case.dart' as _i176;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
 import '../../src/domain/use_cases/login_use_case.dart' as _i379;
+import '../../src/domain/use_cases/profile_usecase.dart' as _i266;
 import '../../src/domain/use_cases/vehicles/vehicles_use_cases.dart' as _i684;
 import '../../src/presentation/managers/Auth/apply/apply_screen_view_model.dart'
     as _i675;
@@ -50,9 +51,13 @@ import '../../src/presentation/managers/Auth/apply/validator_manager.dart'
     as _i195;
 import '../../src/presentation/managers/Auth/forget_password/forget_password_screen_view_model.dart'
     as _i762;
+import '../../src/presentation/managers/Auth/profile/profile_screen_viewmodel.dart'
+    as _i667;
 import '../../src/presentation/managers/login/login_cubit.dart' as _i84;
 import '../../src/presentation/managers/on_boarding/on_boarding_view_model.dart'
     as _i850;
+import '../../src/presentation/managers/section/section_screen_viewmodel.dart'
+    as _i265;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -69,6 +74,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i94.ControllerManager>(() => _i94.ControllerManager());
     gh.factory<_i195.ValidatorManager>(() => _i195.ValidatorManager());
     gh.factory<_i850.OnBoardingViewModel>(() => _i850.OnBoardingViewModel());
+    gh.factory<_i265.SectionScreenViewmodel>(
+        () => _i265.SectionScreenViewmodel());
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.factory<_i252.AuthOfflineDataSource>(
@@ -94,10 +101,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
+    gh.factory<_i266.ProfileUsecase>(
+        () => _i266.ProfileUsecase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
+    gh.factory<_i667.ProfileScreenViewModel>(
+        () => _i667.ProfileScreenViewModel(gh<_i266.ProfileUsecase>()));
     gh.factory<_i84.LoginCubit>(
         () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
