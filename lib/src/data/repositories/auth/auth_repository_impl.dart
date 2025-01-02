@@ -5,9 +5,11 @@ import 'package:tracking_app/core/common/apis/api_result.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/confirm_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/get_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/reset_password_request_model.dart';
+import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
 import 'package:tracking_app/src/data/data_sources/offline_data_source/auth/auth_offline_data_source.dart';
 import 'package:tracking_app/src/domain/entities/forget_password/confime_otp_entity.dart';
 import 'package:tracking_app/src/domain/entities/forget_password/reset_password_entity.dart';
+import 'package:tracking_app/src/domain/entities/login_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth/auth_repository.dart';
 import '../../../domain/entities/forget_password/get_otp_response_entity.dart';
 import '../../data_sources/online_data_source/auth/auth_online_data_source.dart';
@@ -47,5 +49,19 @@ class AuthRepositoryImpl implements AuthRepository{
 
   Future<void> _saveToken({required String token}) async {
     await _authOfflineDataSource.saveToken(token: token);
+  }
+
+  @override
+  Future<ApiResult<LoginEntity>> login(
+      {required LoginRequest loginRequest, required bool isRememberMe}) async {
+    return executeApi<LoginEntity>(
+      apiCall: () async {
+        var loginResponseModel = await _authOnlineDataSource.login(loginRequest: loginRequest);
+        if (isRememberMe) {
+          await  _authOfflineDataSource.saveToken(token: loginResponseModel.token!);
+        }
+        return loginResponseModel.toDomainDto();
+      },
+    );
   }
 }

@@ -376,6 +376,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get didnotReceiveCode => 'لم تستلم الرمز؟';
 
   @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get continues => 'دخول';
+
+  @override
   String get resetPasswordInstruction => 'كلمة السر يجب ان لا تكون فارغة ويجب ان تحتوي علي 6 احرف وحرف كبير ورقم واحد علي الاقل';
 
   @override
@@ -440,4 +449,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get continueKey => 'متابعة';
+
+  @override
+  String get welcomeTo => 'مرحبا بك في';
+
+  @override
+  String get floweryRiderApp => 'تطبيق Flowery Rider';
+
+  @override
+  String get applyNow => 'قدم الآن';
 }
