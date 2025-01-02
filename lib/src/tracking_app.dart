@@ -13,7 +13,7 @@ class TrackingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ScreenUtilInit (
+    return ScreenUtilInit (
       designSize: const Size(375,812),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -27,7 +27,7 @@ class TrackingApp extends StatelessWidget {
         supportedLocales: L10n.all,
         debugShowCheckedModeBanner: false,
         navigatorKey: navKey,
-        initialRoute: PageRoutesName.splash,
+        initialRoute: PageRoutesName.onBoarding,
         onGenerateRoute: AppRoutes.onGenerateRoute,
         themeMode: ThemeMode.light,
         theme: AppTheme.defaultTheme,
