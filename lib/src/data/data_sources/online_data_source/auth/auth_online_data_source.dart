@@ -13,7 +13,7 @@ import 'package:tracking_app/src/data/api/core/api_response_models/Auth/logout_r
 
 abstract interface class AuthOnlineDataSource{
   Future<LoginResponseModel>login({required LoginRequest loginRequest});
-  Future<LoginResponseModel>login({required LoginRequest loginRequest});
+
 
   Future<GetOtpResponseModel> getOtp(GetOtpRequestModel getOtpRequestModel);
   Future<ConfirmOtpResponseModel> confirmOtp(ConfirmOtpRequestModel confirmOtpRequestModel);

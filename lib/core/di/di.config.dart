@@ -19,10 +19,6 @@ import '../../src/data/data_sources/offline_data_source/auth/auth_offline_data_s
     as _i252;
 import '../../src/data/data_sources/offline_data_source/auth/auth_offline_data_source_impl.dart'
     as _i523;
-import '../../src/data/data_sources/offline_data_source/auth_offline_data_source/auth_offline_data_source.dart'
-    as _i673;
-import '../../src/data/data_sources/offline_data_source/auth_offline_data_source/auth_offline_data_source_impl.dart'
-    as _i813;
 import '../../src/data/data_sources/offline_data_source/country/counrty_offline_data_source_impl.dart'
     as _i532;
 import '../../src/data/data_sources/offline_data_source/country/country_offline_data_source.dart'
@@ -56,6 +52,8 @@ import '../../src/presentation/managers/Auth/apply/validator_manager.dart'
 import '../../src/presentation/managers/Auth/forget_password/forget_password_screen_view_model.dart'
     as _i762;
 import '../../src/presentation/managers/login/login_cubit.dart' as _i84;
+import '../../src/presentation/managers/on_boarding/on_boarding_view_model.dart'
+    as _i850;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -71,13 +69,14 @@ extension GetItInjectableX on _i174.GetIt {
     final dioProvider = _$DioProvider();
     gh.factory<_i94.ControllerManager>(() => _i94.ControllerManager());
     gh.factory<_i195.ValidatorManager>(() => _i195.ValidatorManager());
+    gh.factory<_i850.OnBoardingViewModel>(() => _i850.OnBoardingViewModel());
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.factory<_i252.AuthOfflineDataSource>(
         () => _i523.AuthOfflineDataSourceImpl());
+    gh.factory<_i84.LoginCubit>(
+        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
-    gh.factory<_i673.AuthOfflineDataSource>(
-        () => _i813.AuthOfflineDataSourceImpl());
     gh.factory<_i472.CountryOfflineDataSource>(
         () => _i532.CountryOfflineDataSourceImpl());
     gh.factory<_i633.VehiclesOnlineDataSource>(
@@ -96,16 +95,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i732.VehicleRepoImpl(gh<_i633.VehiclesOnlineDataSource>()));
     gh.factory<_i235.AuthUseCases>(
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
-    gh.factory<_i379.LoginUseCase>(
-        () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i333.LogOutUseCase>(
         () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
-    gh.factory<_i84.LoginCubit>(
-        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
           gh<_i684.VehiclesUseCases>(),
           gh<_i94.ControllerManager>(),
