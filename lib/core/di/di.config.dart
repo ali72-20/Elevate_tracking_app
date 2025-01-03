@@ -40,6 +40,7 @@ import '../../src/domain/repositories/vehicles/vehciles_repo.dart' as _i557;
 import '../../src/domain/use_cases/country/country_use_case.dart' as _i176;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
+import '../../src/domain/use_cases/log_out_use_case.dart' as _i333;
 import '../../src/domain/use_cases/login_use_case.dart' as _i379;
 import '../../src/domain/use_cases/vehicles/vehicles_use_cases.dart' as _i684;
 import '../../src/presentation/managers/Auth/apply/apply_screen_view_model.dart'
@@ -92,6 +93,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i732.VehicleRepoImpl(gh<_i633.VehiclesOnlineDataSource>()));
     gh.factory<_i235.AuthUseCases>(
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
+    gh.factory<_i333.LogOutUseCase>(
+        () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(

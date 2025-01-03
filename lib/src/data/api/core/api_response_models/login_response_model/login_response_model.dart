@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tracking_app/src/domain/entities/login_entity.dart';
+
+import '../../../../../domain/entities/auth/login_entity.dart';
 
 part 'login_response_model.g.dart';
 
@@ -22,8 +23,6 @@ class LoginResponseModel {
   Map<String, dynamic> toJson() {
     return _$LoginResponseModelToJson(this);
   }
-
-
 
   LoginEntity toDomainDto(){
     return LoginEntity(massage: message);

@@ -6,4 +6,5 @@ class ApiEndPoints{
   static const String resetPassword = "drivers/resetPassword";
   static const String apply = "drivers/apply";
   static const String vehicles = "vehicles";
+  static const String logout = "drivers/logout";
 }
