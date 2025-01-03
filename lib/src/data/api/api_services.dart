@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
+import 'package:tracking_app/src/data/api/core/api_response_models/change_password/change_password_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/apply/apply_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/confirm_otp_request_model.dart';
@@ -19,6 +20,7 @@ import 'package:tracking_app/src/data/api/core/api_response_models/vehicles/vehi
 import 'package:tracking_app/src/data/api/core/constants/api_end_points.dart';
 import 'package:tracking_app/src/data/api/core/constants/api_keys.dart';
 
+import 'core/api_request_models/change_password/change_password_request_model.dart';
 import 'core/constants/api_base_url.dart';
 part 'api_services.g.dart';
 @singleton
@@ -49,5 +51,8 @@ abstract interface class ApiServices{
 
   @GET(ApiEndPoints.logout)
   Future<LogOutResponseModel> logout(@Header(ApiKey.authorization) String token);
+
+  @PATCH(ApiEndPoints.changePassword)
+  Future<ChangePasswordResponesModel> changePassword(@Header(ApiKey.authorization) String token, @Body() ChangePasswordRequestModel changePasswordRequestModel);
 
 }

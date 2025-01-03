@@ -1,5 +1,6 @@
 import 'package:tracking_app/core/common/apis/api_result.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
+import 'package:tracking_app/src/domain/entities/auth/change_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/forget_password/confime_otp_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/forget_password/get_otp_response_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
@@ -22,5 +23,11 @@ abstract interface class AuthRepository {
 
 
   Future<ApiResult<LogOutEntity>> logOut();
+
+
+  Future<ApiResult<ChangePasswordEntity>> changePassword(
+      String oldPassword, String newPassword);
+
+
 
 }

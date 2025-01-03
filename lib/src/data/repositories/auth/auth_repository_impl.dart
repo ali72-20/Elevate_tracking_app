@@ -4,8 +4,10 @@ import 'package:tracking_app/core/common/apis/api_result.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/confirm_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/get_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/reset_password_request_model.dart';
+import 'package:tracking_app/src/data/api/core/api_request_models/change_password/change_password_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
 import 'package:tracking_app/src/data/data_sources/offline_data_source/auth/auth_offline_data_source.dart';
+import 'package:tracking_app/src/domain/entities/auth/change_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth/auth_repository.dart';
 import '../../../domain/entities/auth/forget_password/confime_otp_entity.dart';
@@ -66,10 +68,6 @@ class AuthRepositoryImpl implements AuthRepository {
     );
   }
 
-  Future<void> _saveToken({required String token}) async {
-    await _authOfflineDataSource.saveToken(token: token);
-  }
-
   @override
   Future<ApiResult<LogOutEntity>> logOut() async {
     String token = await getToken();
@@ -80,11 +78,30 @@ class AuthRepositoryImpl implements AuthRepository {
     });
   }
 
+  @override
+  Future<ApiResult<ChangePasswordEntity>> changePassword(
+      String oldPassword, String newPassword) async {
+    String token = await getToken();
+    await _removeToken();
+    return executeApi<ChangePasswordEntity>(apiCall: () async {
+      var response = await _authOnlineDataSource.changePassword(
+          token: token,
+          changePasswordRequestModel: ChangePasswordRequestModel(
+              password: oldPassword, newPassword: newPassword));
+      await _saveToken(token: response.token ?? "");
+      return response.toDomainDto();
+    });
+  }
+
   Future<String> getToken() async {
     return await _authOfflineDataSource.getToken() ?? "";
   }
 
   Future<void> _removeToken() async {
     await _authOfflineDataSource.deleteToken();
+  }
+
+  Future<void> _saveToken({required String token}) async {
+    await _authOfflineDataSource.saveToken(token: token);
   }
 }
