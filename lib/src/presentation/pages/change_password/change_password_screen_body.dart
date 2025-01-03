@@ -19,92 +19,95 @@ class ChangePasswordScreenBody extends StatelessWidget {
     final viewModel = context.read<ChangePasswordViewModel>();
     Color textFormFieldLabelColor = AppColors.kGray;
     return BlocConsumer<ChangePasswordViewModel, ChangePasswordStates>(
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            child: Form(
-              key: viewModel.formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: viewModel.oldPasswordController,
-                    decoration: InputDecoration(
-                      hintText: context.localization.currentPassword,
-                      hintStyle:  AppTextStyles.font14Regular.copyWith(color: AppColors.kWhite70),
-                      label: Text(
-                        context.localization.currentPassword,
-                        style: AppTextStyles.font14Regular.copyWith(color: textFormFieldLabelColor),
-                      ),
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: Form(
+            key: viewModel.formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: viewModel.oldPasswordController,
+                  decoration: InputDecoration(
+                    hintText: context.localization.currentPassword,
+                    hintStyle: AppTextStyles.font14Regular
+                        .copyWith(color: AppColors.kWhite70),
+                    label: Text(
+                      context.localization.currentPassword,
+                      style: AppTextStyles.font14Regular
+                          .copyWith(color: textFormFieldLabelColor),
                     ),
-                    validator: (value)=>  viewModel.validateFields(ChangePasswordScreenInputField.oldPassword),
-                    onChanged: (value) {
-                      viewModel.doAction(CheckInputValidation());
-                    },
                   ),
-                  verticalSpace(24),
-                  TextFormField(
-                    controller: viewModel.newPasswordController,
-                    decoration: InputDecoration(
-                      hintText: context.localization.newPassword,
-                      hintStyle: AppTextStyles.font14Regular.copyWith(color: AppColors.kWhite70),
-                      label: Text(
-                        context.localization.newPassword,
-                        style: AppTextStyles.font14Regular.copyWith(color: textFormFieldLabelColor),
-                      ),
+                  validator: (value) => viewModel.validateFields(
+                      ChangePasswordScreenInputField.oldPassword),
+                  onChanged: (value) {
+                    viewModel.doAction(CheckInputValidation());
+                  },
+                ),
+                verticalSpace(24),
+                TextFormField(
+                  controller: viewModel.newPasswordController,
+                  decoration: InputDecoration(
+                    hintText: context.localization.newPassword,
+                    hintStyle: AppTextStyles.font14Regular
+                        .copyWith(color: AppColors.kWhite70),
+                    label: Text(
+                      context.localization.newPassword,
+                      style: AppTextStyles.font14Regular
+                          .copyWith(color: textFormFieldLabelColor),
                     ),
-                    validator: (value) =>   viewModel.validateFields(ChangePasswordScreenInputField.newPassword),
-                    onChanged: (value) {
-                      viewModel.doAction(CheckInputValidation());
-                    },
                   ),
-                  verticalSpace(24),
-                  TextFormField(
-                    controller: viewModel.confirmPasswordController,
-                    decoration: InputDecoration(
-                      hintText: context.localization.confirmPassword,
-                      hintStyle:  AppTextStyles.font14Regular.copyWith(color: AppColors.kWhite70),
-                      label: Text(
-                        context.localization.confirmPassword,
-                        style: AppTextStyles.font14Regular.copyWith(color: textFormFieldLabelColor),
-                      ),
+                  validator: (value) => viewModel.validateFields(
+                      ChangePasswordScreenInputField.newPassword),
+                  onChanged: (value) {
+                    viewModel.doAction(CheckInputValidation());
+                  },
+                ),
+                verticalSpace(24),
+                TextFormField(
+                  controller: viewModel.confirmPasswordController,
+                  decoration: InputDecoration(
+                    hintText: context.localization.confirmPassword,
+                    hintStyle: AppTextStyles.font14Regular
+                        .copyWith(color: AppColors.kWhite70),
+                    label: Text(
+                      context.localization.confirmPassword,
+                      style: AppTextStyles.font14Regular
+                          .copyWith(color: textFormFieldLabelColor),
                     ),
-                    validator: (value) =>
-                        viewModel.validateFields(ChangePasswordScreenInputField.confirmPassword),
-                    onChanged: (value) {
-                      viewModel.doAction(CheckInputValidation());
-                    },
                   ),
-                  verticalSpace(48),
-                  SizedBox(
-                    width: context.width,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          disabledBackgroundColor: AppColors.kBlack30),
-                      onPressed: viewModel.isButtonEnabled
-                          ? () => viewModel.doAction(ChangePasswordAction())
-                          : null,
-                      child: Padding(
-                        padding: const EdgeInsets.all(14),
-                        child: Text(
-                          context.localization.update,
-                          style: AppTextStyles.font16Medium
-                              .copyWith(color: AppColors.kWhiteBase),
-                        ),
+                  validator: (value) => viewModel.validateFields(
+                      ChangePasswordScreenInputField.confirmPassword),
+                  onChanged: (value) {
+                    viewModel.doAction(CheckInputValidation());
+                  },
+                ),
+                verticalSpace(48),
+                SizedBox(
+                  width: context.width,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        disabledBackgroundColor: AppColors.kBlack30),
+                    onPressed: viewModel.isButtonEnabled
+                        ? () => viewModel.doAction(ChangePasswordAction())
+                        : null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: Text(
+                        context.localization.update,
+                        style: AppTextStyles.font16Medium
+                            .copyWith(color: AppColors.kWhiteBase),
                       ),
                     ),
-                  )
-                ],
-              ),
-            ),
-          );
-        },
-        listener: (context, state) {
-           if(state is FailureValidateAllFieldsState){
-             textFormFieldLabelColor = AppColors.kRed;
-           }
-           if(state is SuccessValidateAllFieldsState){
-             textFormFieldLabelColor = AppColors.kGray;
-           }
-        });
+                  ),
+                )
+              ],
+            )
+          ),
+        );
+      },
+      listener: (context, state) {
+      },
+    );
   }
 }
