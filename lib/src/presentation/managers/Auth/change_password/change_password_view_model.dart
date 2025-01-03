@@ -17,6 +17,7 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordStates>{
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool isButtonEnabled = false;
 
   Future<void> _dispose()async {
     oldPasswordController.dispose();
@@ -26,23 +27,37 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordStates>{
   String? _validatePassword(String password){
     if(password.isEmpty || password == null || !AppRegex.isPasswordValid(password)){
       emit(FailureValidateAllFieldsState());
-       return "inValid Password";
+       return "invalid Password";
     }
     return null;
   }
 
+
   String? _validateConfirmPassword(String password) {
-    if(_validatePassword(password) == null){
+     String? valid = _validatePassword(password);
+    if(valid == null){
       if(password != newPasswordController.text) {
         emit(FailureValidateAllFieldsState());
         return "Password does not match";
       }
+      return null;
     }
-    return null;
+    return valid;
+  }
+
+  bool _validToChangePassword(){
+     if(formKey.currentState!.validate()){
+       isButtonEnabled = true;
+       emit(SuccessValidateAllFieldsState());
+       return true;
+     }
+     isButtonEnabled = false;
+     emit(FailureValidateAllFieldsState());
+     return false;
   }
 
   _changePassword() async{
-    if(formKey.currentState!.validate()){
+    if(_validToChangePassword()){
       emit(LoadingState());
       var result = await _changePasswordUseCase.changePassword(oldPasswordController.text, newPasswordController.text);
       switch (result) {
@@ -59,11 +74,25 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordStates>{
     }
   }
 
+  String? validateFields(ChangePasswordScreenInputField field){
+     switch (field) {
+       case ChangePasswordScreenInputField.oldPassword:
+           return _validatePassword(oldPasswordController.text);
+       case ChangePasswordScreenInputField.newPassword:
+         return _validatePassword(newPasswordController.text);
+       case ChangePasswordScreenInputField.confirmPassword:
+         return _validateConfirmPassword(confirmPasswordController.text);
+     }
+  }
+
 
   void doAction(ChangePasswordScreenAction action){
     switch (action) {
       case ChangePasswordAction():
         _changePassword();
+        break;
+      case CheckInputValidation():
+        _validToChangePassword();
         break;
     }
   }
