@@ -37,6 +37,7 @@ import '../../src/data/repositories/vehicles/vehicles_repo_impl.dart' as _i732;
 import '../../src/domain/repositories/auth/auth_repository.dart' as _i701;
 import '../../src/domain/repositories/country/country_repo.dart' as _i597;
 import '../../src/domain/repositories/vehicles/vehciles_repo.dart' as _i557;
+import '../../src/domain/use_cases/change_password.dart' as _i982;
 import '../../src/domain/use_cases/country/country_use_case.dart' as _i176;
 import '../../src/domain/use_cases/forget_password/forget_password_use_cases.dart'
     as _i235;
@@ -49,6 +50,8 @@ import '../../src/presentation/managers/Auth/apply/controller_manager.dart'
     as _i94;
 import '../../src/presentation/managers/Auth/apply/validator_manager.dart'
     as _i195;
+import '../../src/presentation/managers/Auth/change_password/change_password_view_model.dart'
+    as _i895;
 import '../../src/presentation/managers/Auth/forget_password/forget_password_screen_view_model.dart'
     as _i762;
 import '../../src/presentation/managers/login/login_cubit.dart' as _i84;
@@ -97,12 +100,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
+    gh.factory<_i982.ChangePasswordUseCase>(
+        () => _i982.ChangePasswordUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
     gh.factory<_i84.LoginCubit>(
         () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
+    gh.factory<_i895.ChangePasswordViewModel>(
+        () => _i895.ChangePasswordViewModel(gh<_i982.ChangePasswordUseCase>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
           gh<_i684.VehiclesUseCases>(),
           gh<_i94.ControllerManager>(),
