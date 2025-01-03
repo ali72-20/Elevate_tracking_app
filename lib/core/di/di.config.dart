@@ -74,8 +74,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.factory<_i252.AuthOfflineDataSource>(
         () => _i523.AuthOfflineDataSourceImpl());
-    gh.factory<_i84.LoginCubit>(
-        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     gh.singleton<_i318.ApiServices>(() => _i318.ApiServices(gh<_i361.Dio>()));
     gh.factory<_i472.CountryOfflineDataSource>(
         () => _i532.CountryOfflineDataSourceImpl());
@@ -97,10 +95,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
     gh.factory<_i333.LogOutUseCase>(
         () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
+    gh.factory<_i379.LoginUseCase>(
+        () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
+    gh.factory<_i84.LoginCubit>(
+        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
           gh<_i684.VehiclesUseCases>(),
           gh<_i94.ControllerManager>(),
