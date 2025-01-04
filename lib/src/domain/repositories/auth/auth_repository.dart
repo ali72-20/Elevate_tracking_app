@@ -7,7 +7,6 @@ import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 import '../../entities/DriverData.dart';
 import '../../entities/auth/forget_password/reset_password_entity.dart';
 import '../../entities/auth/login_entity.dart';
-import '../../entities/forget_password/get_otp_response_entity.dart';
 
 abstract interface class AuthRepository {
   Future<ApiResult<GetOtpResponseEntity>> getOtp(String email);

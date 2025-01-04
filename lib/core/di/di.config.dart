@@ -100,10 +100,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i732.VehicleRepoImpl(gh<_i633.VehiclesOnlineDataSource>()));
     gh.factory<_i235.AuthUseCases>(
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
-    gh.factory<_i333.LogOutUseCase>(
-        () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
+    gh.factory<_i333.LogOutUseCase>(
+        () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i266.ProfileUsecase>(
         () => _i266.ProfileUsecase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
