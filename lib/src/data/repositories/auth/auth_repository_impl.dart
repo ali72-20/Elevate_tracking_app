@@ -10,9 +10,14 @@ import 'package:tracking_app/src/domain/entities/DriverData.dart';
 import 'package:tracking_app/src/domain/entities/forget_password/confime_otp_entity.dart';
 import 'package:tracking_app/src/domain/entities/forget_password/reset_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/login_entity.dart';
+import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth/auth_repository.dart';
 
 import '../../../domain/entities/forget_password/get_otp_response_entity.dart';
+import '../../../domain/entities/auth/forget_password/confime_otp_entity.dart';
+import '../../../domain/entities/auth/forget_password/get_otp_response_entity.dart';
+import '../../../domain/entities/auth/forget_password/reset_password_entity.dart';
+import '../../../domain/entities/auth/login_entity.dart';
 import '../../data_sources/online_data_source/auth/auth_online_data_source.dart';
 
 @Injectable(as: AuthRepository)
@@ -51,10 +56,6 @@ class AuthRepositoryImpl implements AuthRepository {
     });
   }
 
-  Future<void> _saveToken({required String token}) async {
-    await _authOfflineDataSource.saveToken(token: token);
-  }
-
   @override
   Future<ApiResult<LoginEntity>> login(
       {required LoginRequest loginRequest, required bool isRememberMe}) async {
@@ -69,6 +70,28 @@ class AuthRepositoryImpl implements AuthRepository {
         return loginResponseModel.toDomainDto();
       },
     );
+  }
+
+  Future<void> _saveToken({required String token}) async {
+    await _authOfflineDataSource.saveToken(token: token);
+  }
+
+  @override
+  Future<ApiResult<LogOutEntity>> logOut() async {
+    String token = await getToken();
+    await _removeToken();
+    return executeApi<LogOutEntity>(apiCall: () async {
+      var response = await _authOnlineDataSource.logOut(token: token);
+      return response.toDomainDto();
+    });
+  }
+
+  Future<String> getToken() async {
+    return await _authOfflineDataSource.getToken() ?? "";
+  }
+
+  Future<void> _removeToken() async {
+    await _authOfflineDataSource.deleteToken();
   }
 
   @override

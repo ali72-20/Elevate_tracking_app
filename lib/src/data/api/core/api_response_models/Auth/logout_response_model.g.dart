@@ -1,16 +1,18 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'logout_response_model.dart';
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetOtpResponseModel _$GetOtpResponseModelFromJson(Map<String, dynamic> json) =>
-    GetOtpResponseModel(
+LogOutResponseModel _$LogOutResponseModelFromJson(Map<String, dynamic> json) =>
+    LogOutResponseModel(
       message: json['message'] as String?,
-      info: json['info'] as String?,
     );
 
-Map<String, dynamic> _$GetOtpResponseModelToJson(
-        GetOtpResponseModel instance) =>
+Map<String, dynamic> _$LogOutResponseModelToJson(
+        LogOutResponseModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'info': instance.info,
     };

@@ -1,11 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tracking_app/core/common/common_imports.dart';
 import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/app_animations.dart';
 import 'package:tracking_app/core/utilities/style/app_colors.dart';
-import 'package:tracking_app/core/utilities/style/app_images.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/core/utilities/style/spacing.dart';
 import 'package:tracking_app/src/presentation/managers/on_boarding/on_boarding_actions.dart';

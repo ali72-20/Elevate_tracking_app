@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tracking_app/src/domain/entities/forget_password/confime_otp_entity.dart';
+
+import '../../../../../../domain/entities/auth/forget_password/confime_otp_entity.dart';
 
 part 'confirm_otp_response_model.g.dart';
 

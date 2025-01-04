@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tracking_app/src/domain/entities/forget_password/get_otp_response_entity.dart';
+import 'package:tracking_app/src/domain/entities/auth/forget_password/get_otp_response_entity.dart';
 
 part 'get_otp_response_model.g.dart';
 

@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/common/apis/api_result.dart';
 import 'package:tracking_app/core/helpers/app_Regex.dart';
-import 'package:tracking_app/src/domain/entities/forget_password/confime_otp_entity.dart';
-import 'package:tracking_app/src/domain/entities/forget_password/get_otp_response_entity.dart';
-import 'package:tracking_app/src/domain/entities/forget_password/reset_password_entity.dart';
 import 'package:tracking_app/src/domain/use_cases/forget_password/forget_password_use_cases.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forget_password_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/forget_password/forget_password_screen_states.dart';
+
+import '../../../../domain/entities/auth/forget_password/confime_otp_entity.dart';
+import '../../../../domain/entities/auth/forget_password/get_otp_response_entity.dart';
+import '../../../../domain/entities/auth/forget_password/reset_password_entity.dart';
 
 
 @injectable
