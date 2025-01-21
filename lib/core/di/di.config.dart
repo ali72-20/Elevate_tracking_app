@@ -9,9 +9,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../src/data/api/api_services.dart' as _i318;
 import '../../src/data/api/network_factory.dart' as _i801;
@@ -59,24 +61,32 @@ import '../../src/presentation/managers/on_boarding/on_boarding_view_model.dart'
     as _i850;
 import '../../src/presentation/managers/section/section_screen_viewmodel.dart'
     as _i265;
+import '../helpers/shared_pref/shared_pref_module.dart' as _i976;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+    final sharedPrefModule = _$SharedPrefModule();
     final dioProvider = _$DioProvider();
+    await gh.factoryAsync<_i460.SharedPreferences>(
+      () => sharedPrefModule.sharedPreferences,
+      preResolve: true,
+    );
     gh.factory<_i94.ControllerManager>(() => _i94.ControllerManager());
     gh.factory<_i195.ValidatorManager>(() => _i195.ValidatorManager());
     gh.factory<_i850.OnBoardingViewModel>(() => _i850.OnBoardingViewModel());
     gh.factory<_i265.SectionScreenViewmodel>(
         () => _i265.SectionScreenViewmodel());
+    gh.lazySingleton<_i558.FlutterSecureStorage>(
+        () => sharedPrefModule.secureStorage);
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dioProvider());
     gh.lazySingleton<_i528.PrettyDioLogger>(() => dioProvider.providePretty());
     gh.factory<_i252.AuthOfflineDataSource>(
@@ -122,5 +132,7 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$SharedPrefModule extends _i976.SharedPrefModule {}
 
 class _$DioProvider extends _i801.DioProvider {}

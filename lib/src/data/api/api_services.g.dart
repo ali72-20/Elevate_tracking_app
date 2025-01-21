@@ -230,11 +230,10 @@ class _ApiServices implements ApiServices {
   }
 
   @override
-  Future<DriverDataResponse> getDriverData(String token) async {
+  Future<DriverDataResponse> getDriverData() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<DriverDataResponse>(Options(
       method: 'GET',

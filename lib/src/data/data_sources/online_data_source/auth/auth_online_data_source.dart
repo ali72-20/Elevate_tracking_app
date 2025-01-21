@@ -17,7 +17,7 @@ abstract interface class AuthOnlineDataSource {
       ConfirmOtpRequestModel confirmOtpRequestModel);
   Future<ResetPasswordResponseModel> resetPassword(
       ResetPasswordRequestModel resetPasswordRequestModel);
-  Future<DriverDataResponse> getDriverData(String token);
+  Future<DriverDataResponse> getDriverData();
 
   Future<LogOutResponseModel> logOut({required String token});
 }

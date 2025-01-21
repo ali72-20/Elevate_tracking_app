@@ -95,8 +95,8 @@ class AuthRepositoryImpl implements AuthRepository {
     return executeApi<DriverEntity>(
       apiCall: () async {
         var token = await _authOfflineDataSource.getToken();
-        var driverDataResponse =
-            await _authOnlineDataSource.getDriverData(token!);
+
+        var driverDataResponse = await _authOnlineDataSource.getDriverData();
         return driverDataResponse.toDomainEntity();
       },
     );

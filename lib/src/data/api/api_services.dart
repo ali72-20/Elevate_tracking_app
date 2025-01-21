@@ -51,8 +51,7 @@ abstract interface class ApiServices {
   Future<VehiclesResponseModel> getAllVehicles();
 
   @GET(ApiEndPoints.driverData)
-  Future<DriverDataResponse> getDriverData(
-      @Header("Authorization") String token);
+  Future<DriverDataResponse> getDriverData();
   @GET(ApiEndPoints.logout)
   Future<LogOutResponseModel> logout(
       @Header(ApiKey.authorization) String token);

@@ -13,9 +13,12 @@ abstract class DioProvider {
         sendTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
       ),
-
     );
     dio.interceptors.add(providePretty());
+
+    var token = 'Bearer ${dio.options.extra['token']}';
+    dio.options.headers['Authorization'] = token;
+
     return dio;
   }
 
