@@ -26,7 +26,4 @@ abstract interface class AuthRepository {
 
   Future<ApiResult<ChangePasswordEntity>> changePassword(
       String oldPassword, String newPassword);
-
-
-
 }

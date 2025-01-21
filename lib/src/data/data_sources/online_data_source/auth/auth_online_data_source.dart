@@ -9,6 +9,9 @@ import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_p
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/logout_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
 
+import '../../../api/core/api_request_models/change_password/change_password_request_model.dart';
+import '../../../api/core/api_response_models/change_password/change_password_response_model.dart';
+
 abstract interface class AuthOnlineDataSource {
   Future<LoginResponseModel> login({required LoginRequest loginRequest});
 
@@ -20,6 +23,7 @@ abstract interface class AuthOnlineDataSource {
   Future<DriverDataResponse> getDriverData();
 
   Future<LogOutResponseModel> logOut({required String token});
-  Future<ChangePasswordResponesModel> changePassword({required String token, required ChangePasswordRequestModel changePasswordRequestModel});
+  Future<ChangePasswordResponesModel> changePassword(
+      {required String token,
+      required ChangePasswordRequestModel changePasswordRequestModel});
 }
-

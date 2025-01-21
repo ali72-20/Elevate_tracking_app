@@ -9,6 +9,7 @@ import 'package:tracking_app/src/presentation/pages/order/order_screen.dart';
 import 'package:tracking_app/src/presentation/pages/profile/profile_screen.dart';
 import 'package:tracking_app/src/presentation/pages/section_screen.dart';
 
+import '../../src/presentation/pages/home/home_screen.dart';
 import '../../src/presentation/splash_screen.dart';
 
 class AppRoutes {
@@ -42,9 +43,10 @@ class AppRoutes {
       case PageRoutesName.sectionScreen:
         return _handelMaterialPageRoute(
             settings: settings, widget: const SectionScreen());
-            settings: settings, widget:  OnBoarding());
+
       case PageRoutesName.changePassword:
-        return _handelMaterialPageRoute(widget: ChangePasswordScreen(), settings: settings);
+        return _handelMaterialPageRoute(
+            widget: ChangePasswordScreen(), settings: settings);
       default:
         return _handelMaterialPageRoute(
             settings: settings, widget: const Scaffold());

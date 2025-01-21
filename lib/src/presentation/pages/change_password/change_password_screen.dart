@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icon_snackbar/flutter_icon_snackbar.dart';
@@ -39,8 +38,10 @@ class ChangePasswordScreen extends StatelessWidget {
               snackBarType: SnackBarType.success,
             );
           }
-          if(state is LoadingState){
-            IconSnackBar.show(context, label:context.localization.loading, snackBarType: SnackBarType.alert);
+          if (state is LoadingState) {
+            IconSnackBar.show(context,
+                label: context.localization.loading,
+                snackBarType: SnackBarType.alert);
           }
         },
         builder: (context, state) {
