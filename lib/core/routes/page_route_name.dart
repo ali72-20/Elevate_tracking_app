@@ -9,4 +9,5 @@ class PageRoutesName {
   static const String orderScreen = 'orderScreen';
   static const String profileScreen = 'profileScreen';
   static const String sectionScreen = 'sectionScreen';
+  static const String changePassword = 'ChangePassword';
 }

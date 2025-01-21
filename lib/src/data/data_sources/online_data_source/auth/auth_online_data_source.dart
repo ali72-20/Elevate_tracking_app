@@ -20,4 +20,6 @@ abstract interface class AuthOnlineDataSource {
   Future<DriverDataResponse> getDriverData();
 
   Future<LogOutResponseModel> logOut({required String token});
+  Future<ChangePasswordResponesModel> changePassword({required String token, required ChangePasswordRequestModel changePasswordRequestModel});
 }
+
