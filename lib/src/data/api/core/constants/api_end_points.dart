@@ -3,8 +3,8 @@ class ApiEndPoints {
 
   static const String forgetPassword = "forgotPassword";
   static const String verifyResetCode = "verifyResetCode";
-  static const String login = "signin";
-  static const String profileData = "profile-data";
+  static const String login = "drivers/signin";
+  static const String profileData = "drivers/profile-data";
 
   static const String resetPassword = "drivers/resetPassword";
   static const String apply = "drivers/apply";
