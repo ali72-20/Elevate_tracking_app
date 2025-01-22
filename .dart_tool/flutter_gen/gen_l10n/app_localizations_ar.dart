@@ -394,6 +394,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get logoOut => 'تسيخل الخروح';
 
   @override
+  String get thankYouMessage => 'شكرًا على تقديم طلبك، سنقوم بمراجعة طلبك وسنعود إليك قريبًا.';
+
+  @override
+  String get submittedMessage => 'تم تقديم طلبك!';
+
+  @override
   String get languages => 'اللعة ';
 
   @override
