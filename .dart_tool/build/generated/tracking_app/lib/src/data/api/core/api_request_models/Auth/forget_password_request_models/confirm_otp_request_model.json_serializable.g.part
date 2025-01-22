@@ -1,0 +1,15 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ConfirmOtpRequestModel _$ConfirmOtpRequestModelFromJson(
+        Map<String, dynamic> json) =>
+    ConfirmOtpRequestModel(
+      resetCode: json['resetCode'] as String?,
+    );
+
+Map<String, dynamic> _$ConfirmOtpRequestModelToJson(
+        ConfirmOtpRequestModel instance) =>
+    <String, dynamic>{
+      'resetCode': instance.resetCode,
+    };

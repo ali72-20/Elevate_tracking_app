@@ -3,6 +3,7 @@ import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/forget_password/forget_password_screen.dart';
 import 'package:tracking_app/src/presentation/pages/login/view/login_view.dart';
 import 'package:tracking_app/src/presentation/pages/profile/view/profile_view.dart';
+import '../../src/presentation/pages/application_approved/view/application_approved_view.dart';
 import 'package:tracking_app/src/presentation/pages/section_app/section_screen.dart';
 
 import '../../src/presentation/splash_screen.dart';

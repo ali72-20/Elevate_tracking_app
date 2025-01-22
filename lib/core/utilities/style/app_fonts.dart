@@ -14,6 +14,9 @@ class AppFonts {
   static TextStyle font12MainWeight400 = TextStyle(
       color: AppColors.mainColor, fontSize: 12.sp, fontWeight: FontWeight.w400);
 
+  static TextStyle font16kGrayWeight400Font = TextStyle(
+      fontSize: 16.sp, fontWeight: FontWeight.w400, color: AppColors.kGray);
+
   static TextStyle font13BlackWeight400 = TextStyle(
       fontSize: 13.sp, fontWeight: FontWeight.w400, color: AppColors.kBlack);
 
@@ -30,5 +33,10 @@ class AppFonts {
   static TextStyle font18BlackWeight500Font = TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w500,
+      color: AppColors.kBlackBase);
+
+  static TextStyle font18BlackWeight600Font = TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeight.w600,
       color: AppColors.kBlackBase);
 }

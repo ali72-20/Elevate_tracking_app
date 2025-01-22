@@ -1,0 +1,13 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GetOtpRequestModel _$GetOtpRequestModelFromJson(Map<String, dynamic> json) =>
+    GetOtpRequestModel(
+      email: json['email'] as String?,
+    );
+
+Map<String, dynamic> _$GetOtpRequestModelToJson(GetOtpRequestModel instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+    };

@@ -869,6 +869,18 @@ abstract class AppLocalizations {
   /// **'LogoOut'**
   String get logoOut;
 
+  /// No description provided for @thankYouMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
+  String get thankYouMessage;
+
+  /// No description provided for @submittedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get submittedMessage;
+
   /// No description provided for @languages.
   ///
   /// In en, this message translates to:
