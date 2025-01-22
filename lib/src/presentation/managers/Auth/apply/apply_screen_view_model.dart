@@ -16,6 +16,7 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   final VehiclesUseCases _vehiclesUseCases;
   final CountryUseCase _countryUseCase;
   final ControllerManager _controllerManager;
+  final ValidatorManager _validatorManager;
   GlobalKey<FormState> applyFormKey = GlobalKey<FormState>();
   Gender selectedGender = Gender.none;
   List<CountryEntity> countries = [];
@@ -23,19 +24,19 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   VehiclesResponseEntity selectedVehicle = VehiclesResponseEntity();
   VehiclesEntity selectedVehicleEntity = VehiclesEntity();
   bool _dataloadedSuccess = true;
-  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._countryUseCase): super(InitialState());
+  ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._countryUseCase,this._validatorManager): super(InitialState());
 
   TextEditingController getController(ApplyScreenFormFields controller){
     return _controllerManager.getController(controller);
   }
 
-  String? validateField(ApplyScreenFormFields field){
-    String value = _controllerManager.getController(field).text;
-    if(value.isEmpty){
-      return "This field is required";
+  String? validateField(ApplyScreenFormFields field) {
+    if(field == ApplyScreenFormFields.confirmPassword){
+      return _validatorManager.validateField(field, getController(field),getController(ApplyScreenFormFields.password));
     }
-    return null;
+    return _validatorManager.validateField(field, getController(field),null);
   }
+
 
   _getAllVehicles() async{
     var response = await _vehiclesUseCases.getAllVehicles();
@@ -69,16 +70,14 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
     }
   }
 
-  _applyNewUser() async{}
+  _applyNewUser() async{
+    if(!applyFormKey.currentState!.validate()){
+        return;
+    }
+  }
 
   void doAction(ApplyScreenActions action){
     switch (action) {
-      case GetAllVehiclesAction():
-        _getAllVehicles();
-        break;
-      case GetCountriesAction():
-        _getCountries();
-        break;
       case ApplyNewUserAction():
         _applyNewUser();
         break;

@@ -106,15 +106,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i762.ForgetPasswordScreenViewModel>(
         () => _i762.ForgetPasswordScreenViewModel(gh<_i235.AuthUseCases>()));
-    gh.factory<_i84.LoginCubit>(
-        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
-    gh.factory<_i895.ChangePasswordViewModel>(
-        () => _i895.ChangePasswordViewModel(gh<_i982.ChangePasswordUseCase>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(
           gh<_i684.VehiclesUseCases>(),
           gh<_i94.ControllerManager>(),
           gh<_i176.CountryUseCase>(),
+          gh<_i195.ValidatorManager>(),
         ));
+    gh.factory<_i84.LoginCubit>(
+        () => _i84.LoginCubit(gh<_i379.LoginUseCase>()));
+    gh.factory<_i895.ChangePasswordViewModel>(
+        () => _i895.ChangePasswordViewModel(gh<_i982.ChangePasswordUseCase>()));
     return this;
   }
 }

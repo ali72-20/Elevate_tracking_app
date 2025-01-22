@@ -4,8 +4,6 @@ import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/spacing.dart';
 import 'package:tracking_app/src/domain/entities/country/country_entity.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
-import 'package:tracking_app/src/presentation/pages/Auth/apply/country_drop_down_list.dart';
-
 import '../../../../../core/common/common_imports.dart';
 import '../../../../../core/utilities/style/app_colors.dart';
 import '../../../../../core/utilities/style/app_text_styles.dart';
@@ -40,6 +38,7 @@ class _ApplyFormState extends State<ApplyForm> {
                     viewModel.getController(ApplyScreenFormFields.country).text = value.name!;
                   });
                 },
+                value: viewModel.selectedCountry,
                 buttonStyleData: ButtonStyleData(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
@@ -155,6 +154,9 @@ class _ApplyFormState extends State<ApplyForm> {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
+              validator: (value){
+                return viewModel.validateField(ApplyScreenFormFields.vehicleLicense);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -220,7 +222,54 @@ class _ApplyFormState extends State<ApplyForm> {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
+              validator: (value){
+                return viewModel.validateField(ApplyScreenFormFields.idNumber);
+              },
             ),
+            verticalSpace(24),
+            Row(
+              mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: context.width * 0.45 ,
+                  child: TextFormField(
+                    controller: viewModel
+                        .getController(ApplyScreenFormFields.password),
+                    decoration: InputDecoration(
+                      label: Text(
+                        context.localization.password,
+                        style: AppTextStyles.font12Regular,
+                      ),
+                      hintText: context.localization.enterYourPassword,
+                      hintStyle: AppTextStyles.font14Regular
+                          .copyWith(color: AppColors.kWhite70),
+                    ),
+                    validator: (value){
+                     return viewModel.validateField(ApplyScreenFormFields.password);
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: context.width * 0.45,
+                  child: TextFormField(
+                    controller: viewModel
+                        .getController(ApplyScreenFormFields.confirmPassword),
+                    decoration: InputDecoration(
+                      label: Text(
+                        context.localization.confirmPassword,
+                        style: AppTextStyles.font12Regular,
+                      ),
+                      hintText: context.localization.confirmPassword,
+                      hintStyle: AppTextStyles.font14Regular
+                          .copyWith(color: AppColors.kWhite70),
+                    ),
+                    validator: (value){
+                    return  viewModel.validateField(ApplyScreenFormFields.confirmPassword);
+                    },
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
