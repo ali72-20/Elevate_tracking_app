@@ -10,6 +10,8 @@ import 'package:tracking_app/src/data/data_sources/offline_data_source/auth/auth
 import 'package:tracking_app/src/domain/entities/auth/change_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth/auth_repository.dart';
+
+import '../../../domain/entities/app_user_entity.dart';
 import '../../../domain/entities/auth/forget_password/confime_otp_entity.dart';
 import '../../../domain/entities/auth/forget_password/get_otp_response_entity.dart';
 import '../../../domain/entities/auth/forget_password/reset_password_entity.dart';
@@ -103,5 +105,17 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _saveToken({required String token}) async {
     await _authOfflineDataSource.saveToken(token: token);
+  }
+
+  @override
+  Future<ApiResult<AppUserEntity>> getProfileData() {
+    return executeApi<AppUserEntity>(
+      apiCall: () async {
+        var token = await _authOfflineDataSource.getToken();
+        var appUserModel =
+            await _authOnlineDataSource.getProfileData(token: token!);
+        return appUserModel.driver!.toDomain();
+      },
+    );
   }
 }

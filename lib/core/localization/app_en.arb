@@ -125,6 +125,12 @@
   "didnotReceiveCode": "Did not receive the code?",
   "enterEmail": "Enter Your Email",
   "enterPassword": "Enter Your  Password",
+
+  "profile": "profile",
+  "editProfile": "Edit Profile",
+  "readyForDelivery": "Ready for delivery",
+  "logoOut": "LogoOut",
+  "languages": "Languages ",
    "continues": "Continue",
   "resetPasswordInstruction": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
   "apply": "Apply",
