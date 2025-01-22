@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tracking_app/src/domain/entities/auth/apply_request_entity.dart';
 
 part 'apply_request_model.g.dart';
 
@@ -50,6 +51,20 @@ class ApplyRequestModel {
 
   Map<String, dynamic> toJson() {
     return _$ApplyRequestModelToJson(this);
+  }
+  factory ApplyRequestModel.fromDomainDto(ApplyRequestEntity applyRequestEntity){
+    return ApplyRequestModel(
+      files: applyRequestEntity.files,
+      country: applyRequestEntity.country,
+      firstName: applyRequestEntity.firstName,
+      lastName: applyRequestEntity.lastName,
+      vehicleType: applyRequestEntity.vehicleType,
+      vehicleNumber: applyRequestEntity.vehicleNumber,
+      NID: applyRequestEntity.NID,
+      email: applyRequestEntity.email,
+      password: applyRequestEntity.password,
+      rePassword: applyRequestEntity.rePassword,
+    );
   }
 }
 

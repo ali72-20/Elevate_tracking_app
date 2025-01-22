@@ -233,9 +233,19 @@ class _ApplyFormState extends State<ApplyForm> {
                 SizedBox(
                   width: context.width * 0.45 ,
                   child: TextFormField(
+                    obscureText: viewModel.isObscure,
                     controller: viewModel
                         .getController(ApplyScreenFormFields.password),
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              viewModel.isObscure = !viewModel.isObscure;
+                            });
+                          },
+                          icon: Icon(viewModel.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
                       label: Text(
                         context.localization.password,
                         style: AppTextStyles.font12Regular,
@@ -252,9 +262,19 @@ class _ApplyFormState extends State<ApplyForm> {
                 SizedBox(
                   width: context.width * 0.45,
                   child: TextFormField(
+                    obscureText: viewModel.isObscure,
                     controller: viewModel
                         .getController(ApplyScreenFormFields.confirmPassword),
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              viewModel.isObscure = !viewModel.isObscure;
+                            });
+                          },
+                          icon: Icon(viewModel.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
                       label: Text(
                         context.localization.confirmPassword,
                         style: AppTextStyles.font12Regular,

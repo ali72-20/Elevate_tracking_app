@@ -1,12 +1,15 @@
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/common/apis/api_executer.dart';
 import 'package:tracking_app/core/common/apis/api_result.dart';
+import 'package:tracking_app/src/data/api/core/api_request_models/Auth/apply/apply_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/confirm_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/get_otp_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/forget_password_request_models/reset_password_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/change_password/change_password_request_model.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
 import 'package:tracking_app/src/data/data_sources/offline_data_source/auth/auth_offline_data_source.dart';
+import 'package:tracking_app/src/domain/entities/auth/apply_request_entity.dart';
+import 'package:tracking_app/src/domain/entities/auth/apply_response_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/change_password_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 import 'package:tracking_app/src/domain/repositories/auth/auth_repository.dart';
@@ -92,7 +95,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return response.toDomainDto();
     });
   }
-
+  @override
+  Future<ApiResult<ApplyResponseEntity>> apply(ApplyRequestEntity applyRequestEntity) async{
+    return await executeApi<ApplyResponseEntity>(apiCall: ()async{
+      var response = await _authOnlineDataSource.apply(applyRequestModel: ApplyRequestModel.fromDomainDto(applyRequestEntity));
+      await _saveToken(token: response.token??"");
+      return response.toDomainDto();
+    });
+  }
   Future<String> getToken() async {
     return await _authOfflineDataSource.getToken() ?? "";
   }
@@ -104,4 +114,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> _saveToken({required String token}) async {
     await _authOfflineDataSource.saveToken(token: token);
   }
+
+
 }

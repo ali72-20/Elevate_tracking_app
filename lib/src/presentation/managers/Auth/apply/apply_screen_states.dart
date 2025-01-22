@@ -6,3 +6,8 @@ class FailureState extends ApplyScreenStates{
   final Exception? exception;
   FailureState({this.exception});
 }
+
+class FormFailureState extends ApplyScreenStates{
+  final String? message;
+  FormFailureState({this.message});
+}

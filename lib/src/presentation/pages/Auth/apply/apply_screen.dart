@@ -1,3 +1,6 @@
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/common/common_imports.dart';
 import 'package:tracking_app/core/di/di.dart';
@@ -39,7 +42,21 @@ class ApplyScreen extends StatelessWidget {
             return const ApplyScreenBody();
           },
           listener: (context,state) {
-
+            if(state is FormFailureState){
+              ElegantNotification.error(
+                width: 320.w,
+                stackedOptions: StackedOptions(
+                  key: 'topleft',
+                  type: StackedType.same,
+                  itemOffset: const Offset(0, 5),
+                ),
+                position: Alignment.topRight,
+                animation: AnimationType.fromTop,
+                title: Text(context.localization.error,style: AppTextStyles.font18Medium,),
+                description: Text(state.message!),
+                onDismiss: () {},
+              ).show(context);
+            }
           },
         )
       ),

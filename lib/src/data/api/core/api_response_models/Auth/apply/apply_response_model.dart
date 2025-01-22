@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tracking_app/src/domain/entities/auth/apply_response_entity.dart';
 
 part 'apply_response_model.g.dart';
 
@@ -23,6 +24,12 @@ class ApplyResponseModel {
 
   Map<String, dynamic> toJson() {
     return _$ApplyResponseModelToJson(this);
+  }
+  ApplyResponseEntity toDomainDto() {
+    return ApplyResponseEntity(
+      message: message,
+      driver: driver?.toDomain(),
+    );
   }
 }
 
@@ -80,6 +87,19 @@ class Driver {
 
   Map<String, dynamic> toJson() {
     return _$DriverToJson(this);
+  }
+  DriveEntity toDomain() {
+    return DriveEntity(
+      country: country,
+      firstName: firstName,
+      lastName: lastName,
+      vehicleType: vehicleType,
+      vehicleNumber: vehicleNumber,
+      vehicleLicense: vehicleLicense,
+      NID: NID,
+      NIDImg: NIDImg,
+      email: email,
+    );
   }
 }
 
