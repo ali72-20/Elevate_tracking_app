@@ -7,17 +7,20 @@ import 'package:tracking_app/src/data/api/core/api_request_models/change_passwor
 import 'package:tracking_app/src/data/api/core/api_request_models/login_request/login_request.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_password/get_otp_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/Auth/forget_password/reset_password_response_model.dart';
+import 'package:tracking_app/src/data/api/core/api_response_models/Auth/logout_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/change_password/change_password_response_model.dart';
 import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
-import 'package:tracking_app/src/data/api/core/api_response_models/login_response_model/login_response_model.dart';
-import 'package:tracking_app/src/data/api/core/api_response_models/Auth/logout_response_model.dart';
 import 'package:tracking_app/src/data/data_sources/online_data_source/auth/auth_online_data_source.dart';
+
+import '../../../api/core/api_response_models/app_user_response/app_user_response_model.dart';
+
 @Injectable(as: AuthOnlineDataSource)
-class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
+class AuthOnlineDataSourceImpl implements AuthOnlineDataSource {
   final ApiServices _apiServices;
   AuthOnlineDataSourceImpl(this._apiServices);
   @override
-  Future<GetOtpResponseModel> getOtp(GetOtpRequestModel getOtpRequestModel) async{
+  Future<GetOtpResponseModel> getOtp(
+      GetOtpRequestModel getOtpRequestModel) async {
     return await _apiServices.getOtp(getOtpRequestModel);
   }
 
@@ -27,21 +30,31 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
   }
 
   @override
-  Future<ResetPasswordResponseModel> resetPassword(ResetPasswordRequestModel resetPasswordRequestModel)async {
+  Future<ResetPasswordResponseModel> resetPassword(
+      ResetPasswordRequestModel resetPasswordRequestModel) async {
     return await _apiServices.resetPassword(resetPasswordRequestModel);
-  }
-  @override
-  Future<LoginResponseModel> login({required LoginRequest loginRequest}) {
-    return  _apiServices.login(loginRequest);
   }
 
   @override
-  Future<LogOutResponseModel> logOut({required String token}) async{
+  Future<LoginResponseModel> login({required LoginRequest loginRequest}) {
+    return _apiServices.login(loginRequest);
+  }
+
+  @override
+  Future<LogOutResponseModel> logOut({required String token}) async {
     return await _apiServices.logout("Bearer $token");
   }
 
   @override
-  Future<ChangePasswordResponesModel> changePassword({required String token, required ChangePasswordRequestModel changePasswordRequestModel}) async{
-    return await _apiServices.changePassword("Bearer $token", changePasswordRequestModel);
+  Future<ChangePasswordResponesModel> changePassword(
+      {required String token,
+      required ChangePasswordRequestModel changePasswordRequestModel}) async {
+    return await _apiServices.changePassword(
+        "Bearer $token", changePasswordRequestModel);
+  }
+
+  @override
+  Future<AppUserResponseModel> getProfileData({required String token}) {
+    return _apiServices.profileData(token: token);
   }
 }

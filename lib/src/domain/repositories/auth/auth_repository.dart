@@ -5,9 +5,9 @@ import 'package:tracking_app/src/domain/entities/auth/forget_password/confime_ot
 import 'package:tracking_app/src/domain/entities/auth/forget_password/get_otp_response_entity.dart';
 import 'package:tracking_app/src/domain/entities/auth/log_out_entity.dart';
 
+import '../../entities/app_user_entity.dart';
 import '../../entities/auth/forget_password/reset_password_entity.dart';
 import '../../entities/auth/login_entity.dart';
-
 
 abstract interface class AuthRepository {
   Future<ApiResult<GetOtpResponseEntity>> getOtp(String email);
@@ -17,17 +17,13 @@ abstract interface class AuthRepository {
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
       String email, String newPassword);
 
-
   Future<ApiResult<LoginEntity>> login(
       {required LoginRequest loginRequest, required bool isRememberMe});
 
-
   Future<ApiResult<LogOutEntity>> logOut();
-
 
   Future<ApiResult<ChangePasswordEntity>> changePassword(
       String oldPassword, String newPassword);
 
-
-
+  Future<ApiResult<AppUserEntity>> getProfileData();
 }
