@@ -40,6 +40,7 @@ class AppFonts{
   );
 
 
+
   static TextStyle font18BlackWeight500Font= TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
