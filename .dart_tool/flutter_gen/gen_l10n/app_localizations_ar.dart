@@ -398,4 +398,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languages => 'اللعة ';
+
+  @override
+  String get thankYouMessage => 'شكرًا على تقديم طلبك، سنقوم بمراجعة طلبك وسنعود إليك قريبًا.';
+
+  @override
+  String get submittedMessage => 'تم تقديم طلبك!';
 }

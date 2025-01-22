@@ -75,10 +75,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i673.AuthOfflineDataSource>(),
           authOnlineDataSource: gh<_i269.AuthOnlineDataSource>(),
         ));
-    gh.factory<_i379.LoginUseCase>(
-        () => _i379.LoginUseCase(authRepository: gh<_i333.AuthRepository>()));
     gh.factory<_i986.GetProfileDataUseCase>(() => _i986.GetProfileDataUseCase(
         authRepository: gh<_i333.AuthRepository>()));
+    gh.factory<_i379.LoginUseCase>(
+        () => _i379.LoginUseCase(authRepository: gh<_i333.AuthRepository>()));
     gh.factory<_i34.ProfileCubit>(
         () => _i34.ProfileCubit(gh<_i986.GetProfileDataUseCase>()));
     gh.factory<_i84.LoginCubit>(

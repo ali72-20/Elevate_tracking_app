@@ -398,4 +398,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languages => 'Languages ';
+
+  @override
+  String get thankYouMessage => 'Thank you for providing your application, we will review your application and will get back to you soon.';
+
+  @override
+  String get submittedMessage => 'Your application has been submitted!';
 }

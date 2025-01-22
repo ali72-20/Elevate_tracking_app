@@ -880,6 +880,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Languages '**
   String get languages;
+
+  /// No description provided for @thankYouMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application, we will review your application and will get back to you soon.'**
+  String get thankYouMessage;
+
+  /// No description provided for @submittedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get submittedMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
