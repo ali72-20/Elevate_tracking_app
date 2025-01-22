@@ -1,12 +1,12 @@
-### IntelliJ IDEA ###
+# IntelliJ IDEA
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### Kotlin ###
+# Kotlin
 .kotlin
 
-### Eclipse ###
+# Eclipse
 .apt_generated
 .classpath
 .factorypath
@@ -18,28 +18,24 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### Mac OS ###
+# MacOS
 .DS_Store
 
-# Flutter build directory
+# Flutter
 /build/
-
-# Dart tool-related files
-/.dart_tool/
-
-# Flutter plugins and dependencies
+.dart_tool/
 /.flutter-plugins
-/.flutter-plugins-dependencies
+.flutter-plugins-dependencies
 
-# Miscellaneous files
+# Miscellaneous
 .last_build_id
