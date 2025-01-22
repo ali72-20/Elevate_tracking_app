@@ -40,4 +40,9 @@ class AppTextStyles{
     color: AppColors.kBlack,
     fontWeight: AppFontWeights.normal
   );
+  static TextStyle font11Regular = TextStyle(
+    fontSize: 11.sp,
+    color: AppColors.kGray,
+    fontWeight: AppFontWeights.normal
+  );
 }

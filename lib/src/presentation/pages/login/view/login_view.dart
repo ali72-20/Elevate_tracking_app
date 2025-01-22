@@ -69,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
   void _navigateToBaseScreen() {
     Navigator.pushNamedAndRemoveUntil(
       context,
-      PageRoutesName.profile,
+      PageRoutesName.section,
       (route) => false,
     );
   }

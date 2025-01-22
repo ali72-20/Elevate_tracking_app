@@ -382,9 +382,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterPassword => 'Enter Your  Password';
 
   @override
-  String get continues => 'Continue';
-
-  @override
   String get profile => 'profile';
 
   @override
@@ -400,8 +397,80 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languages => 'Languages ';
 
   @override
-  String get thankYouMessage => 'Thank you for providing your application, we will review your application and will get back to you soon.';
+  String get continues => 'Continue';
 
   @override
-  String get submittedMessage => 'Your application has been submitted!';
+  String get resetPasswordInstruction => 'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get joinOurTeam => 'You want to be a delivery man?\nJoin our team';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get firstLegalName => 'First Legal Name';
+
+  @override
+  String get secondLegalName => 'Second Legal Name';
+
+  @override
+  String get vehicleType => 'Vehicle Type';
+
+  @override
+  String get vehicleNumber => 'Vehicle Number';
+
+  @override
+  String get idNumber => 'ID Number';
+
+  @override
+  String get vehicleLicense => 'Vehicle License';
+
+  @override
+  String get idImage => 'ID Image';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get enterFirstLegalName => 'Enter First Legal Name';
+
+  @override
+  String get enterSecondLegalName => 'Enter Second Legal Name';
+
+  @override
+  String get enterVehicleNumber => 'Enter Vehicle Number';
+
+  @override
+  String get enterIdNumber => 'Enter National ID Number';
+
+  @override
+  String get uploadVehicleLicense => 'Upload Vehicle License';
+
+  @override
+  String get uploadIdImage => 'Upload ID Image';
+
+  @override
+  String get welcome => 'Welcome!!';
+
+  @override
+  String get continueKey => 'Continue';
+
+  @override
+  String get welcomeTo => 'Welcome to';
+
+  @override
+  String get floweryRiderApp => 'Flowery Rider App';
+
+  @override
+  String get applyNow => 'Apply Now';
 }
