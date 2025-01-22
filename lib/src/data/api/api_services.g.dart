@@ -142,7 +142,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'signin',
+          'drivers/signin',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -176,7 +176,7 @@ class _ApiServices implements ApiServices {
     )
         .compose(
           _dio.options,
-          'profile-data',
+          'drivers/profile-data',
           queryParameters: queryParameters,
           data: _data,
         )
