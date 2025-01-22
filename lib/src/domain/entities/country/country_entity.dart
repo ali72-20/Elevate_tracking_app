@@ -7,7 +7,7 @@ class CountryEntity {
 
   final String? isoCode;
 
-  final String? name;
+  late final String? name;
 
   final String? phoneCode;
 

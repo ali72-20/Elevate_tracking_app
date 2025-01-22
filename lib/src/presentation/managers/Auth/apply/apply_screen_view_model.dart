@@ -21,8 +21,8 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   List<CountryEntity> countries = [];
   CountryEntity selectedCountry = CountryEntity();
   VehiclesResponseEntity selectedVehicle = VehiclesResponseEntity();
-
-
+  VehiclesEntity selectedVehicleEntity = VehiclesEntity();
+  bool _dataloadedSuccess = true;
   ApplyScreenViewModel(this._vehiclesUseCases,this._controllerManager,this._countryUseCase): super(InitialState());
 
   TextEditingController getController(ApplyScreenFormFields controller){
@@ -38,13 +38,14 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   }
 
   _getAllVehicles() async{
-    emit(LoadingState());
     var response = await _vehiclesUseCases.getAllVehicles();
     switch (response) {
       case Success<VehiclesResponseEntity>():
-        emit(SuccessState());
+        selectedVehicle = response.data!;
+        selectedVehicleEntity = response.data!.vehicles!.first;
         break;
       case Failures<VehiclesResponseEntity>():
+        _dataloadedSuccess&=false;
         emit(FailureState(exception: response.exception));
         break;
     }
@@ -53,6 +54,19 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
   _getCountries() async{
     var response = await _countryUseCase.getCountries();
     countries = response;
+    selectedCountry = countries.first;
+    if(_dataloadedSuccess){
+      emit(SuccessState());
+    }
+  }
+
+  _getData() async{
+    emit(LoadingState());
+    await _getAllVehicles();
+    await _getCountries();
+    if(_dataloadedSuccess) {
+      emit(SuccessState());
+    }
   }
 
   _applyNewUser() async{}
@@ -68,6 +82,9 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates>{
       case ApplyNewUserAction():
         _applyNewUser();
         break;
+      case GetScreenDataAction():
+        _getData();
+        break;
     }
   }
 }
@@ -76,10 +93,13 @@ enum ApplyScreenFormFields{
     secondLegalName,
     vehicleNumber,
     vehicleLicense,
+     vehicleType,
     country,
     email,
     phoneNumber,
     idNumber,
+    password,
+    confirmPassword,
 }
 
 enum Gender{

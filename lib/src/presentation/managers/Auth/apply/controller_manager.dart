@@ -14,6 +14,9 @@ class ControllerManager{
   TextEditingController idNumberController = TextEditingController();
   TextEditingController vehicleLicenseController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController vehicleTypeController = TextEditingController();
   TextEditingController getController(ApplyScreenFormFields controller){
     switch (controller) {
       case ApplyScreenFormFields.firstLegalName:
@@ -32,6 +35,12 @@ class ControllerManager{
         return vehicleLicenseController;
       case ApplyScreenFormFields.country:
         return countryController;
+      case ApplyScreenFormFields.password:
+        return passwordController;
+      case ApplyScreenFormFields.confirmPassword:
+        return confirmPasswordController;
+      case ApplyScreenFormFields.vehicleType:
+        return vehicleTypeController;
     }
   }
 }
