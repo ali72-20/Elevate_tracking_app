@@ -17,6 +17,7 @@ class ControllerManager{
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController vehicleTypeController = TextEditingController();
+  TextEditingController idImageController= TextEditingController();
   TextEditingController getController(ApplyScreenFormFields controller){
     switch (controller) {
       case ApplyScreenFormFields.firstLegalName:
@@ -41,6 +42,8 @@ class ControllerManager{
         return confirmPasswordController;
       case ApplyScreenFormFields.vehicleType:
         return vehicleTypeController;
+      case ApplyScreenFormFields.idImage:
+        return idImageController;
     }
   }
 }

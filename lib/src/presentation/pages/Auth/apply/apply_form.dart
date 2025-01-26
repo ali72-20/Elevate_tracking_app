@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/spacing.dart';
 import 'package:tracking_app/src/domain/entities/country/country_entity.dart';
@@ -30,12 +33,18 @@ class _ApplyFormState extends State<ApplyForm> {
               child: DropdownButton2<CountryEntity>(
                 isExpanded: true,
                 items: viewModel.countries
-                    .map((e) => DropdownMenuItem(value: e, child: Text("${e.flag} ${e.name}",)))
+                    .map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(
+                          "${e.flag} ${e.name}",
+                        )))
                     .toList(),
-                onChanged: (value){
+                onChanged: (value) {
                   setState(() {
                     viewModel.selectedCountry = value!;
-                    viewModel.getController(ApplyScreenFormFields.country).text = value.name!;
+                    viewModel
+                        .getController(ApplyScreenFormFields.country)
+                        .text = value.name!;
                   });
                 },
                 value: viewModel.selectedCountry,
@@ -112,7 +121,9 @@ class _ApplyFormState extends State<ApplyForm> {
                 onChanged: (value) {
                   setState(() {
                     viewModel.selectedVehicleEntity = value!;
-                    viewModel.getController(ApplyScreenFormFields.vehicleType).text = value.type!;
+                    viewModel
+                        .getController(ApplyScreenFormFields.vehicleType)
+                        .text = value.type!;
                   });
                 },
                 buttonStyleData: ButtonStyleData(
@@ -142,10 +153,20 @@ class _ApplyFormState extends State<ApplyForm> {
             ),
             verticalSpace(24),
             TextFormField(
+              controller:
+                  viewModel.getController(ApplyScreenFormFields.vehicleLicense),
               readOnly: true,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                    onPressed: () async {
+                      var image = await ImagePicker.platform
+                          .getImageFromSource(source: ImageSource.gallery);
+                      viewModel.vehicleLicenseImage = File(image?.path ?? "");
+                      viewModel
+                          .getController(ApplyScreenFormFields.vehicleLicense)
+                          .text = File(image?.name ?? "").toString();
+                    },
+                    icon: const Icon(Icons.file_upload)),
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
                 hintText: context.localization.uploadVehicleLicense,
@@ -154,8 +175,9 @@ class _ApplyFormState extends State<ApplyForm> {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
-              validator: (value){
-                return viewModel.validateField(ApplyScreenFormFields.vehicleLicense);
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.vehicleLicense);
               },
             ),
             verticalSpace(24),
@@ -211,9 +233,19 @@ class _ApplyFormState extends State<ApplyForm> {
             ),
             verticalSpace(24),
             TextFormField(
+              controller:
+                  viewModel.getController(ApplyScreenFormFields.idImage),
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                    onPressed: () async {
+                      var image = await ImagePicker.platform
+                          .getImageFromSource(source: ImageSource.gallery);
+                      viewModel.idImage = File(image?.path ?? "");
+                      viewModel
+                          .getController(ApplyScreenFormFields.idImage)
+                          .text = File(image?.name ?? "").toString();
+                    },
+                    icon: const Icon(Icons.file_upload)),
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
                 hintText: context.localization.uploadIdImage,
@@ -222,20 +254,20 @@ class _ApplyFormState extends State<ApplyForm> {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
-              validator: (value){
-                return viewModel.validateField(ApplyScreenFormFields.idNumber);
+              validator: (value) {
+                return viewModel.validateField(ApplyScreenFormFields.idImage);
               },
             ),
             verticalSpace(24),
             Row(
-              mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: context.width * 0.45 ,
+                  width: context.width * 0.45,
                   child: TextFormField(
                     obscureText: viewModel.isObscure,
-                    controller: viewModel
-                        .getController(ApplyScreenFormFields.password),
+                    controller:
+                        viewModel.getController(ApplyScreenFormFields.password),
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                           onPressed: () {
@@ -254,8 +286,9 @@ class _ApplyFormState extends State<ApplyForm> {
                       hintStyle: AppTextStyles.font14Regular
                           .copyWith(color: AppColors.kWhite70),
                     ),
-                    validator: (value){
-                     return viewModel.validateField(ApplyScreenFormFields.password);
+                    validator: (value) {
+                      return viewModel
+                          .validateField(ApplyScreenFormFields.password);
                     },
                   ),
                 ),
@@ -283,8 +316,9 @@ class _ApplyFormState extends State<ApplyForm> {
                       hintStyle: AppTextStyles.font14Regular
                           .copyWith(color: AppColors.kWhite70),
                     ),
-                    validator: (value){
-                    return  viewModel.validateField(ApplyScreenFormFields.confirmPassword);
+                    validator: (value) {
+                      return viewModel
+                          .validateField(ApplyScreenFormFields.confirmPassword);
                     },
                   ),
                 ),

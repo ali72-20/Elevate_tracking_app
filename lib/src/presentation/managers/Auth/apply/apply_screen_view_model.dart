@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -29,6 +31,8 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
   VehiclesEntity selectedVehicleEntity = VehiclesEntity();
   bool isObscure = true;
   bool _dataloadedSuccess = true;
+  File? idImage;
+  File? vehicleLicenseImage;
 
   ApplyScreenViewModel(this._vehiclesUseCases, this._controllerManager,
       this._countryUseCase, this._validatorManager, this._applyNewUserUseCase)
@@ -135,6 +139,7 @@ enum ApplyScreenFormFields {
   idNumber,
   password,
   confirmPassword,
+  idImage
 }
 
 enum Gender { none, male, female }

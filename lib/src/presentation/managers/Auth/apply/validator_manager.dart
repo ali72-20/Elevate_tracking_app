@@ -69,7 +69,8 @@ class ValidatorManager{
         return _validatePassword(controller.text);
       case ApplyScreenFormFields.confirmPassword:
         return _validateConfirmPassword(password!.text, controller.text);
-
+      case ApplyScreenFormFields.idImage:
+        return _validateFieldInput(controller.text);
     }
     return null;
   }
