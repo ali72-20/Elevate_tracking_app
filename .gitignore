@@ -23,8 +23,8 @@ bin/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
 
+/android/app/google-services.json
 ### VS Code ###
 .vscode/
 
