@@ -150,5 +150,7 @@
   "continueKey": "Continue",
   "welcomeTo" : "Welcome to",
   "floweryRiderApp": "Flowery Rider App",
-  "applyNow": "Apply Now"
+  "applyNow": "Apply Now",
+  "applicationSuccess": "Your application has been submitted!",
+  "applicationSuccessMessage" : "Thank you for providing your application, we will review your application and will get back to you soon."
 }

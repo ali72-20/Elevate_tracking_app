@@ -9,7 +9,7 @@ class AppRegex{
   }
 
   static bool isPhoneNumberValid(String phoneNumber) {
-    return RegExp(r"^(?:[+0]9)?[0-9]{10}$").hasMatch(phoneNumber);
+    return RegExp(r"^\+\d{1,3}[0-9]{10}$").hasMatch(phoneNumber);
   }
 
   static bool isOTPValid(String otp) {

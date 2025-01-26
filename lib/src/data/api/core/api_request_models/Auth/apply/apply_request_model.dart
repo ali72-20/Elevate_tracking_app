@@ -1,37 +1,36 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'dart:io';
+
+
 import 'package:tracking_app/src/domain/entities/auth/apply_request_entity.dart';
+class ApplyRequestModel{
 
-part 'apply_request_model.g.dart';
-
-@JsonSerializable()
-class ApplyRequestModel {
-  @JsonKey(name: "files")
-  final List<String>? files;
-  @JsonKey(name: "country")
   final String? country;
-  @JsonKey(name: "firstName")
+
   final String? firstName;
-  @JsonKey(name: "lastName")
+
   final String? lastName;
-  @JsonKey(name: "vehicleType")
+
   final String? vehicleType;
-  @JsonKey(name: "vehicleNumber")
+
   final String? vehicleNumber;
-  @JsonKey(name: "NID")
+
   final String? NID;
-  @JsonKey(name: "email")
+
   final String? email;
-  @JsonKey(name: "password")
+
   final String? password;
-  @JsonKey(name: "rePassword")
+
   final String? rePassword;
-  @JsonKey(name: "gender")
+
   final String? gender;
-  @JsonKey(name: "phone")
+
   final String? phone;
+  final File? vehicleLicenseImage;
+  final File? idImage;
 
   ApplyRequestModel ({
-    this.files,
+    this.idImage,
+    this.vehicleLicenseImage,
     this.country,
     this.firstName,
     this.lastName,
@@ -45,16 +44,10 @@ class ApplyRequestModel {
     this.phone,
   });
 
-  factory ApplyRequestModel.fromJson(Map<String, dynamic> json) {
-    return _$ApplyRequestModelFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$ApplyRequestModelToJson(this);
-  }
   factory ApplyRequestModel.fromDomainDto(ApplyRequestEntity applyRequestEntity){
     return ApplyRequestModel(
-      files: applyRequestEntity.files,
+      vehicleLicenseImage: applyRequestEntity.vehicleLicenseImage,
+      idImage: applyRequestEntity.idImage,
       country: applyRequestEntity.country,
       firstName: applyRequestEntity.firstName,
       lastName: applyRequestEntity.lastName,
@@ -66,6 +59,7 @@ class ApplyRequestModel {
       rePassword: applyRequestEntity.rePassword,
     );
   }
+
 }
 
 

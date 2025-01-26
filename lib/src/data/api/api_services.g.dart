@@ -163,16 +163,90 @@ class _ApiServices implements ApiServices {
   }
 
   @override
-  Future<ApplyResponseModel> apply(ApplyRequestModel applyRequestModel) async {
+  Future<ApplyResponseModel> apply(
+    String country,
+    String firstName,
+    String lastName,
+    String vehicleType,
+    String vehicleNumber,
+    File vehicleLicense,
+    String NID,
+    File NIDImg,
+    String email,
+    String password,
+    String rePassword,
+    String gender,
+    String phone,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(applyRequestModel.toJson());
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'country',
+      country,
+    ));
+    _data.fields.add(MapEntry(
+      'firstName',
+      firstName,
+    ));
+    _data.fields.add(MapEntry(
+      'lastName',
+      lastName,
+    ));
+    _data.fields.add(MapEntry(
+      'vehicleType',
+      vehicleType,
+    ));
+    _data.fields.add(MapEntry(
+      'vehicleNumber',
+      vehicleNumber,
+    ));
+    _data.files.add(MapEntry(
+      'vehicleLicense',
+      MultipartFile.fromFileSync(
+        vehicleLicense.path,
+        filename: vehicleLicense.path.split(Platform.pathSeparator).last,
+        contentType: MediaType.parse('image/jpg'),
+      ),
+    ));
+    _data.fields.add(MapEntry(
+      'NID',
+      NID,
+    ));
+    _data.files.add(MapEntry(
+      'NIDImg',
+      MultipartFile.fromFileSync(
+        NIDImg.path,
+        filename: NIDImg.path.split(Platform.pathSeparator).last,
+        contentType: MediaType.parse('image/jpg'),
+      ),
+    ));
+    _data.fields.add(MapEntry(
+      'email',
+      email,
+    ));
+    _data.fields.add(MapEntry(
+      'password',
+      password,
+    ));
+    _data.fields.add(MapEntry(
+      'rePassword',
+      rePassword,
+    ));
+    _data.fields.add(MapEntry(
+      'gender',
+      gender,
+    ));
+    _data.fields.add(MapEntry(
+      'phone',
+      phone,
+    ));
     final _options = _setStreamType<ApplyResponseModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
+      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,

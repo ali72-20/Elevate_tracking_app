@@ -1,9 +1,9 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 
 
 class ApplyRequestEntity{
-
-  final List<String>? files;
 
   final String? country;
 
@@ -26,9 +26,12 @@ class ApplyRequestEntity{
   final String? gender;
 
   final String? phone;
+  final File? vehicleLicenseImage;
+  final File? idImage;
 
   ApplyRequestEntity ({
-    this.files,
+    this.idImage,
+    this.vehicleLicenseImage,
     this.country,
     this.firstName,
     this.lastName,

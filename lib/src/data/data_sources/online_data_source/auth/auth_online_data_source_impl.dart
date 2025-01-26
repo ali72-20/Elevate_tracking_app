@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/src/data/api/api_services.dart';
 import 'package:tracking_app/src/data/api/core/api_request_models/Auth/apply/apply_request_model.dart';
@@ -49,6 +51,33 @@ class AuthOnlineDataSourceImpl implements AuthOnlineDataSource{
 
   @override
   Future<ApplyResponseModel> apply({required ApplyRequestModel applyRequestModel}) async{
-    return await _apiServices.apply(applyRequestModel);
+    String country = applyRequestModel.country!;
+    String firstName = applyRequestModel.firstName!;
+    String lastName = applyRequestModel.lastName!;
+    String vehicleType = applyRequestModel.vehicleType!;
+    String vehicleNumber = applyRequestModel.vehicleNumber!;
+    File vehicleLicense = applyRequestModel.vehicleLicenseImage!;
+    String NID = applyRequestModel.NID!;
+    File NIDImg = applyRequestModel.idImage!;
+    String email = applyRequestModel.email!;
+    String password = applyRequestModel.password!;
+    String rePassword = applyRequestModel.rePassword!;
+    String gender = applyRequestModel.gender!;
+    String phone = applyRequestModel.phone!;
+    return await _apiServices.apply(
+      country,
+      firstName,
+      lastName,
+      vehicleType,
+      vehicleNumber,
+      vehicleLicense,
+      NID,
+      NIDImg,
+      email,
+      password,
+      rePassword,
+      gender,
+      phone
+    );
   }
 }

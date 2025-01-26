@@ -1,12 +1,14 @@
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mime/mime.dart';
 import 'package:tracking_app/core/helpers/app_Regex.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
 
 @injectable
 @singleton
-class ValidatorManager{
+class ValidatorManager {
   String? _validateFieldInput(String value) {
     if (value.isEmpty) {
       return "This field is required";
@@ -14,46 +16,58 @@ class ValidatorManager{
     return null;
   }
 
-  String? _validateEmail(String email){
-    if(email.isEmpty || !AppRegex.isEmailValid(email)){
+  String? _validateEmail(String email) {
+    if (email.isEmpty || !AppRegex.isEmailValid(email)) {
       return "Invalid email";
     }
     return null;
   }
 
   String? _validatePassword(String password) {
-    if(password.isEmpty || !AppRegex.isPasswordValid(password)){
+    if (password.isEmpty || !AppRegex.isPasswordValid(password)) {
       return "Invalid password";
     }
     return null;
   }
 
-  String? _validateConfirmPassword(String password,String confirmPassword){
-    if(confirmPassword.isEmpty || !AppRegex.isPasswordValid(confirmPassword)){
+  String? _validateConfirmPassword(String password, String confirmPassword) {
+    if (confirmPassword.isEmpty || !AppRegex.isPasswordValid(confirmPassword)) {
       return "Invalid password";
     }
-    if(password != confirmPassword) {
+    if (password != confirmPassword) {
       return "Password does not match";
     }
     return null;
   }
 
-  String? _validatePhoneNumber(String phoneNumber){
-    if(phoneNumber.isEmpty || !AppRegex.isPhoneNumberValid(phoneNumber)){
+  String? _validatePhoneNumber(String phoneNumber) {
+    if (phoneNumber.isEmpty || !AppRegex.isPhoneNumberValid(phoneNumber)) {
       return "Invalid phone number";
     }
     return null;
   }
 
-  String? validateField(ApplyScreenFormFields field,TextEditingController controller, TextEditingController? password){
+  String? _validateImages(File? image) {
+    String imageName = File(image?.path??"").toString();
+    if (imageName.isEmpty || image == null) {
+      return "This field is required";
+    }
+    final mimeType = lookupMimeType(image.path);
+    final validMimeTypes = ["image/jpeg", "image/jpg",];
+    if (!validMimeTypes.contains(mimeType)) {
+      return "Invalid file type. Only JPG and JPEG are allowed.";
+    }
+    return null;
+  }
+
+  String? validateField(ApplyScreenFormFields field,
+      TextEditingController controller, TextEditingController? password,File? image) {
     switch (field) {
       case ApplyScreenFormFields.firstLegalName:
         return _validateFieldInput(controller.text);
       case ApplyScreenFormFields.secondLegalName:
         return _validateFieldInput(controller.text);
       case ApplyScreenFormFields.vehicleNumber:
-        return _validateFieldInput(controller.text);
-      case ApplyScreenFormFields.vehicleLicense:
         return _validateFieldInput(controller.text);
       case ApplyScreenFormFields.vehicleType:
         return _validateFieldInput(controller.text);
@@ -69,10 +83,11 @@ class ValidatorManager{
         return _validatePassword(controller.text);
       case ApplyScreenFormFields.confirmPassword:
         return _validateConfirmPassword(password!.text, controller.text);
+      case ApplyScreenFormFields.vehicleLicense:
+        return _validateImages(image);
       case ApplyScreenFormFields.idImage:
-        return _validateFieldInput(controller.text);
+        return _validateImages(image);
     }
     return null;
   }
-
 }

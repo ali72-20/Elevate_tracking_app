@@ -149,5 +149,7 @@
   "continueKey": "متابعة",
   "welcomeTo": "مرحبا بك في",
   "floweryRiderApp": "تطبيق Flowery Rider",
-  "applyNow": "قدم الآن"
+  "applyNow": "قدم الآن",
+  "applicationSuccess": "",
+  "applicationSuccessMessage": ""
 }

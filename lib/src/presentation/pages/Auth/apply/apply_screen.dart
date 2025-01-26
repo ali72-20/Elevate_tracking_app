@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/common/common_imports.dart';
 import 'package:tracking_app/core/di/di.dart';
 import 'package:tracking_app/core/extensions/extensions.dart';
+import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/core/utilities/style/app_text_styles.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_actions.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_states.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/apply/apply_screen_body.dart';
+import 'package:tracking_app/src/tracking_app.dart';
 
 class ApplyScreen extends StatelessWidget {
   ApplyScreen({super.key});
@@ -56,6 +58,9 @@ class ApplyScreen extends StatelessWidget {
                 description: Text(state.message!),
                 onDismiss: () {},
               ).show(context);
+            }
+            if(state is ApplySuccessState){
+              navKey.currentState!.pushNamed(PageRoutesName.successApply);
             }
           },
         )

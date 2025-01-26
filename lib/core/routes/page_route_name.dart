@@ -6,4 +6,5 @@ class PageRoutesName{
   static const String apply = 'apply';
   static const String onBoarding = 'onBoarding';
   static const String changePassword = 'ChangePassword';
+  static const String successApply = "successApply";
 }

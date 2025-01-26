@@ -99,12 +99,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i235.AuthUseCases(gh<_i701.AuthRepository>()));
     gh.factory<_i333.LogOutUseCase>(
         () => _i333.LogOutUseCase(gh<_i701.AuthRepository>()));
+    gh.factory<_i664.ApplyNewUserUseCase>(
+        () => _i664.ApplyNewUserUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i379.LoginUseCase>(
         () => _i379.LoginUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i982.ChangePasswordUseCase>(
         () => _i982.ChangePasswordUseCase(gh<_i701.AuthRepository>()));
-    gh.factory<_i664.ApplyNewUserUseCase>(
-        () => _i664.ApplyNewUserUseCase(gh<_i701.AuthRepository>()));
     gh.factory<_i684.VehiclesUseCases>(
         () => _i684.VehiclesUseCases(gh<_i557.VehiclesRepo>()));
     gh.factory<_i675.ApplyScreenViewModel>(() => _i675.ApplyScreenViewModel(

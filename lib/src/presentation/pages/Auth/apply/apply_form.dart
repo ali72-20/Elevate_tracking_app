@@ -233,6 +233,7 @@ class _ApplyFormState extends State<ApplyForm> {
             ),
             verticalSpace(24),
             TextFormField(
+              readOnly: true,
               controller:
                   viewModel.getController(ApplyScreenFormFields.idImage),
               decoration: InputDecoration(

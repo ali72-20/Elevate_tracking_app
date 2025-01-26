@@ -45,4 +45,9 @@ class AppTextStyles{
     color: AppColors.kGray,
     fontWeight: AppFontWeights.normal
   );
+  static TextStyle font18SemiBold = TextStyle(
+      fontSize: 18.sp,
+      color: AppColors.kBlack,
+      fontWeight: AppFontWeights.semiBold
+  );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/core/routes/page_route_name.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/apply/apply_screen.dart';
+import 'package:tracking_app/src/presentation/pages/Auth/apply/success_auth_apply.dart';
 import 'package:tracking_app/src/presentation/pages/Auth/forget_password/forget_password_screen.dart';
 import 'package:tracking_app/src/presentation/pages/change_password/change_password_screen.dart';
 import 'package:tracking_app/src/presentation/pages/login/view/login_view.dart';
@@ -25,6 +26,8 @@ class AppRoutes{
             settings: settings, widget:  OnBoarding());
       case PageRoutesName.changePassword:
         return _handelMaterialPageRoute(widget: ChangePasswordScreen(), settings: settings);
+      case PageRoutesName.successApply:
+        return _handelMaterialPageRoute(widget: const SuccessAuthApply(), settings: settings);
       default:
         return _handelMaterialPageRoute(
             settings: settings, widget: const Scaffold());

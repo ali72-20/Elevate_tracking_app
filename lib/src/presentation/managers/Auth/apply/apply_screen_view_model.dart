@@ -45,9 +45,18 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
   String? validateField(ApplyScreenFormFields field) {
     if (field == ApplyScreenFormFields.confirmPassword) {
       return _validatorManager.validateField(field, getController(field),
-          getController(ApplyScreenFormFields.password));
+          getController(ApplyScreenFormFields.password), null);
     }
-    return _validatorManager.validateField(field, getController(field), null);
+    if (field == ApplyScreenFormFields.idImage ||
+        field == ApplyScreenFormFields.vehicleLicense) {
+      var image = field == ApplyScreenFormFields.idImage
+          ? idImage
+          : vehicleLicenseImage;
+      return _validatorManager.validateField(
+          field, getController(field), null, image);
+    }
+    return _validatorManager.validateField(
+        field, getController(field), null, null);
   }
 
   _getAllVehicles() async {
@@ -82,8 +91,10 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
     }
   }
 
-  ApplyRequestEntity _getNewDriverData(){
-   return ApplyRequestEntity(
+  ApplyRequestEntity _getNewDriverData() {
+    return ApplyRequestEntity(
+      idImage: idImage,
+      vehicleLicenseImage: vehicleLicenseImage,
       firstName: getController(ApplyScreenFormFields.firstLegalName).text,
       lastName: getController(ApplyScreenFormFields.secondLegalName).text,
       vehicleNumber: getController(ApplyScreenFormFields.vehicleNumber).text,
@@ -94,6 +105,7 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
       NID: getController(ApplyScreenFormFields.idNumber).text,
       password: getController(ApplyScreenFormFields.password).text,
       rePassword: getController(ApplyScreenFormFields.confirmPassword).text,
+      gender: selectedGender.index.toString(),
     );
   }
 
@@ -102,16 +114,16 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
       emit(FormFailureState(message: "Please fill all fields"));
       return;
     }
-    if(selectedGender == Gender.none){
+    if (selectedGender == Gender.none) {
       emit(FormFailureState(message: "Select Gender"));
     }
     emit(LoadingState());
     var response = await _applyNewUserUseCase.apply(_getNewDriverData());
     switch (response) {
       case Success<ApplyResponseEntity>():
-        emit(SuccessState());
+        emit(ApplySuccessState());
       case Failures<ApplyResponseEntity>():
-        emit(FailureState(exception: response.exception));
+        emit(ApplyFailureState(exception: response.exception));
     }
   }
 
