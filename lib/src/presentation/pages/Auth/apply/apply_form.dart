@@ -1,17 +1,25 @@
+import 'dart:io';
+
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tracking_app/core/extensions/extensions.dart';
 import 'package:tracking_app/core/utilities/style/spacing.dart';
+import 'package:tracking_app/src/domain/entities/country/country_entity.dart';
 import 'package:tracking_app/src/presentation/managers/Auth/apply/apply_screen_view_model.dart';
-import 'package:tracking_app/src/presentation/pages/Auth/apply/apply_screen.dart';
-import 'package:tracking_app/src/presentation/pages/Auth/apply/country_drop_down_list.dart';
-
 import '../../../../../core/common/common_imports.dart';
 import '../../../../../core/utilities/style/app_colors.dart';
 import '../../../../../core/utilities/style/app_text_styles.dart';
+import '../../../../domain/entities/vehciles/vehicles_entity.dart';
 
-class ApplyForm extends StatelessWidget {
+class ApplyForm extends StatefulWidget {
   const ApplyForm({super.key});
 
+  @override
+  State<ApplyForm> createState() => _ApplyFormState();
+}
+
+class _ApplyFormState extends State<ApplyForm> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read<ApplyScreenViewModel>();
@@ -21,24 +29,49 @@ class ApplyForm extends StatelessWidget {
         key: viewModel.applyFormKey,
         child: Column(
           children: [
-            const CountryDropDownList(),
-            verticalSpace(25),
-            TextFormField(
-              controller:
-                  viewModel.getController(ApplyScreenFormFields.firstLegalName),
-              decoration: InputDecoration(
-                label: Text(
-                  context.localization.firstLegalName,
-                  style: AppTextStyles.font12Regular,
+            DropdownButtonHideUnderline(
+              child: DropdownButton2<CountryEntity>(
+                isExpanded: true,
+                items: viewModel.countries
+                    .map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(
+                          "${e.flag} ${e.name}",
+                        )))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    viewModel.selectedCountry = value!;
+                    viewModel
+                        .getController(ApplyScreenFormFields.country)
+                        .text = value.name!;
+                  });
+                },
+                value: viewModel.selectedCountry,
+                buttonStyleData: ButtonStyleData(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: AppColors.kWhiteBase,
+                    border: Border.all(color: AppColors.kBlackBase),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  width: context.width,
+                  height: 50.h,
                 ),
-                hintText: context.localization.enterYourName,
-                hintStyle: AppTextStyles.font14Regular
-                    .copyWith(color: AppColors.kWhite70),
+                menuItemStyleData: MenuItemStyleData(
+                  height: 40.h,
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  maxHeight: 200.h,
+                ),
+                iconStyleData: const IconStyleData(
+                  icon: Icon(Icons.keyboard_arrow_down_sharp),
+                ),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: AppColors.kBlackBase,
+                ),
               ),
-              validator: (value) {
-                return viewModel
-                    .validateField(ApplyScreenFormFields.firstLegalName);
-              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -77,20 +110,63 @@ class ApplyForm extends StatelessWidget {
               },
             ),
             verticalSpace(24),
-            TextFormField(
-              decoration: InputDecoration(
-                label: Text(
-                  context.localization.vehicleType,
-                  style: AppTextStyles.font12Regular,
+            DropdownButtonHideUnderline(
+              child: DropdownButton2<VehiclesEntity>(
+                isExpanded: true,
+                items: viewModel.selectedVehicle.vehicles
+                    ?.map((e) =>
+                        DropdownMenuItem(value: e, child: Text(e.type ?? '')))
+                    .toList(),
+                value: viewModel.selectedVehicleEntity,
+                onChanged: (value) {
+                  setState(() {
+                    viewModel.selectedVehicleEntity = value!;
+                    viewModel
+                        .getController(ApplyScreenFormFields.vehicleType)
+                        .text = value.type!;
+                  });
+                },
+                buttonStyleData: ButtonStyleData(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: AppColors.kWhiteBase,
+                    border: Border.all(color: AppColors.kBlackBase),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  width: context.width,
+                  height: 50.h,
+                ),
+                menuItemStyleData: MenuItemStyleData(
+                  height: 40.h,
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  maxHeight: 200.h,
+                ),
+                iconStyleData: const IconStyleData(
+                  icon: Icon(Icons.keyboard_arrow_down_sharp),
+                ),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: AppColors.kBlack100,
                 ),
               ),
             ),
             verticalSpace(24),
             TextFormField(
+              controller:
+                  viewModel.getController(ApplyScreenFormFields.vehicleLicense),
               readOnly: true,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                    onPressed: () async {
+                      var image = await ImagePicker.platform
+                          .getImageFromSource(source: ImageSource.gallery);
+                      viewModel.vehicleLicenseImage = File(image?.path ?? "");
+                      viewModel
+                          .getController(ApplyScreenFormFields.vehicleLicense)
+                          .text = File(image?.name ?? "").toString();
+                    },
+                    icon: const Icon(Icons.file_upload)),
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
                 hintText: context.localization.uploadVehicleLicense,
@@ -99,6 +175,10 @@ class ApplyForm extends StatelessWidget {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.vehicleLicense);
+              },
             ),
             verticalSpace(24),
             TextFormField(
@@ -153,9 +233,19 @@ class ApplyForm extends StatelessWidget {
             ),
             verticalSpace(24),
             TextFormField(
+              controller:
+                  viewModel.getController(ApplyScreenFormFields.idImage),
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.file_upload)),
+                    onPressed: () async {
+                      var image = await ImagePicker.platform
+                          .getImageFromSource(source: ImageSource.gallery);
+                      viewModel.idImage = File(image?.path ?? "");
+                      viewModel
+                          .getController(ApplyScreenFormFields.idImage)
+                          .text = File(image?.name ?? "").toString();
+                    },
+                    icon: const Icon(Icons.file_upload)),
                 hintStyle: AppTextStyles.font14Regular
                     .copyWith(color: AppColors.kWhite70),
                 hintText: context.localization.uploadIdImage,
@@ -164,6 +254,75 @@ class ApplyForm extends StatelessWidget {
                   style: AppTextStyles.font12Regular,
                 ),
               ),
+              validator: (value) {
+                return viewModel.validateField(ApplyScreenFormFields.idImage);
+              },
+            ),
+            verticalSpace(24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: context.width * 0.45,
+                  child: TextFormField(
+                    obscureText: viewModel.isObscure,
+                    controller:
+                        viewModel.getController(ApplyScreenFormFields.password),
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              viewModel.isObscure = !viewModel.isObscure;
+                            });
+                          },
+                          icon: Icon(viewModel.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
+                      label: Text(
+                        context.localization.password,
+                        style: AppTextStyles.font12Regular,
+                      ),
+                      hintText: context.localization.enterYourPassword,
+                      hintStyle: AppTextStyles.font14Regular
+                          .copyWith(color: AppColors.kWhite70),
+                    ),
+                    validator: (value) {
+                      return viewModel
+                          .validateField(ApplyScreenFormFields.password);
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: context.width * 0.45,
+                  child: TextFormField(
+                    obscureText: viewModel.isObscure,
+                    controller: viewModel
+                        .getController(ApplyScreenFormFields.confirmPassword),
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              viewModel.isObscure = !viewModel.isObscure;
+                            });
+                          },
+                          icon: Icon(viewModel.isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
+                      label: Text(
+                        context.localization.confirmPassword,
+                        style: AppTextStyles.font12Regular,
+                      ),
+                      hintText: context.localization.confirmPassword,
+                      hintStyle: AppTextStyles.font14Regular
+                          .copyWith(color: AppColors.kWhite70),
+                    ),
+                    validator: (value) {
+                      return viewModel
+                          .validateField(ApplyScreenFormFields.confirmPassword);
+                    },
+                  ),
+                ),
+              ],
             )
           ],
         ),

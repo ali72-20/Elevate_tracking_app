@@ -30,3 +30,16 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Flutter build directory
+/build/
+
+# Dart tool-related files
+/.dart_tool/
+
+# Flutter plugins and dependencies
+/.flutter-plugins
+/.flutter-plugins-dependencies
+
+# Miscellaneous files
+.last_build_id
