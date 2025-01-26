@@ -123,6 +123,7 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
       case Success<ApplyResponseEntity>():
         emit(ApplySuccessState());
       case Failures<ApplyResponseEntity>():
+        print(response.exception.toString());
         emit(ApplyFailureState(exception: response.exception));
     }
   }
