@@ -33,3 +33,4 @@ bin/
 /build/
 
 /.dart_tool/
+/android/app/
