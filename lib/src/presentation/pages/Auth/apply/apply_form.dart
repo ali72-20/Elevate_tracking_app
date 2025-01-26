@@ -76,6 +76,24 @@ class _ApplyFormState extends State<ApplyForm> {
             verticalSpace(24),
             TextFormField(
               controller: viewModel
+                  .getController(ApplyScreenFormFields.firstLegalName),
+              decoration: InputDecoration(
+                label: Text(
+                  context.localization.firstLegalName,
+                  style: AppTextStyles.font12Regular,
+                ),
+                hintText: context.localization.enterFirstLegalName,
+                hintStyle: AppTextStyles.font14Regular
+                    .copyWith(color: AppColors.kWhite70),
+              ),
+              validator: (value) {
+                return viewModel
+                    .validateField(ApplyScreenFormFields.firstLegalName);
+              },
+            ),
+            verticalSpace(24),
+            TextFormField(
+              controller: viewModel
                   .getController(ApplyScreenFormFields.secondLegalName),
               decoration: InputDecoration(
                 label: Text(
