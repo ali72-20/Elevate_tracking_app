@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:tracking_app/src/domain/entities/auth/apply_response_entity.dart';
 
@@ -45,12 +47,8 @@ class Driver {
   final String? vehicleType;
   @JsonKey(name: "vehicleNumber")
   final String? vehicleNumber;
-  @JsonKey(name: "vehicleLicense")
-  final String? vehicleLicense;
   @JsonKey(name: "NID")
   final String? NID;
-  @JsonKey(name: "NIDImg")
-  final String? NIDImg;
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "gender")
@@ -70,9 +68,7 @@ class Driver {
     this.lastName,
     this.vehicleType,
     this.vehicleNumber,
-    this.vehicleLicense,
     this.NID,
-    this.NIDImg,
     this.email,
     this.gender,
     this.phone,
@@ -95,9 +91,7 @@ class Driver {
       lastName: lastName,
       vehicleType: vehicleType,
       vehicleNumber: vehicleNumber,
-      vehicleLicense: vehicleLicense,
       NID: NID,
-      NIDImg: NIDImg,
       email: email,
     );
   }

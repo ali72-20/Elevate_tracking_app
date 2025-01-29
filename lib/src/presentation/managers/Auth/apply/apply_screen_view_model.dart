@@ -99,13 +99,13 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
       lastName: getController(ApplyScreenFormFields.secondLegalName).text,
       vehicleNumber: getController(ApplyScreenFormFields.vehicleNumber).text,
       vehicleType: selectedVehicleEntity.Id,
-      country: selectedCountry.name,
+      country: selectedCountry.name!,
       email: getController(ApplyScreenFormFields.email).text,
       phone: getController(ApplyScreenFormFields.phoneNumber).text,
       NID: getController(ApplyScreenFormFields.idNumber).text,
       password: getController(ApplyScreenFormFields.password).text,
       rePassword: getController(ApplyScreenFormFields.confirmPassword).text,
-      gender: selectedGender.index.toString(),
+      gender: selectedGender.toString().split(".").last,
     );
   }
 
@@ -118,12 +118,12 @@ class ApplyScreenViewModel extends Cubit<ApplyScreenStates> {
       emit(FormFailureState(message: "Select Gender"));
     }
     emit(LoadingState());
-    var response = await _applyNewUserUseCase.apply(_getNewDriverData());
+    ApplyRequestEntity newUser = _getNewDriverData();
+    var response = await _applyNewUserUseCase.apply(newUser);
     switch (response) {
       case Success<ApplyResponseEntity>():
         emit(ApplySuccessState());
       case Failures<ApplyResponseEntity>():
-        print(response.exception.toString());
         emit(ApplyFailureState(exception: response.exception));
     }
   }

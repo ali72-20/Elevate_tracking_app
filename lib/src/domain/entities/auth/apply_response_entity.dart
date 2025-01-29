@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 
 
@@ -26,11 +28,9 @@ class DriveEntity {
 
   final String? vehicleNumber;
 
-  final String? vehicleLicense;
 
   final String? NID;
 
-  final String? NIDImg;
 
   final String? email;
 
@@ -50,9 +50,7 @@ class DriveEntity {
     this.lastName,
     this.vehicleType,
     this.vehicleNumber,
-    this.vehicleLicense,
     this.NID,
-    this.NIDImg,
     this.email,
     this.gender,
     this.phone,

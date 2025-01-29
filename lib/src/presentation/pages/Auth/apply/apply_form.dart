@@ -11,6 +11,7 @@ import '../../../../../core/common/common_imports.dart';
 import '../../../../../core/utilities/style/app_colors.dart';
 import '../../../../../core/utilities/style/app_text_styles.dart';
 import '../../../../domain/entities/vehciles/vehicles_entity.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ApplyForm extends StatefulWidget {
   const ApplyForm({super.key});

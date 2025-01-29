@@ -99,7 +99,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ApiResult<ApplyResponseEntity>> apply(ApplyRequestEntity applyRequestEntity) async{
     return await executeApi<ApplyResponseEntity>(apiCall: ()async{
       var response = await _authOnlineDataSource.apply(applyRequestModel: ApplyRequestModel.fromDomainDto(applyRequestEntity));
-      await _saveToken(token: response.token??"");
+      print('response: $response');
       return response.toDomainDto();
     });
   }

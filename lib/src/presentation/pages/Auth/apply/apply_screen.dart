@@ -44,6 +44,21 @@ class ApplyScreen extends StatelessWidget {
             return const ApplyScreenBody();
           },
           listener: (context,state) {
+            if(state is ApplyFailureState){
+              ElegantNotification.error(
+                width: 320.w,
+                stackedOptions: StackedOptions(
+                  key: 'topleft',
+                  type: StackedType.same,
+                  itemOffset: const Offset(0, 5),
+                ),
+                position: Alignment.topRight,
+                animation: AnimationType.fromTop,
+                title: Text(context.localization.error,style: AppTextStyles.font18Medium,),
+                description: Text(state.exception.toString()!),
+                onDismiss: () {},
+              ).show(context);
+            }
             if(state is FormFailureState){
               ElegantNotification.error(
                 width: 320.w,
